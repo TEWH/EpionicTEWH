@@ -3,6 +3,7 @@ package org.texasewh.epionic;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.view.View;
@@ -25,14 +26,32 @@ public class MainActivity extends AppCompatActivity {
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
                 case R.id.navigation_home:
-                    mTextMessage.setText(R.string.title_home);
+                    setTitle("Epionic"); // sets title of action bar
+                    FragmentMain fragmentMain = new FragmentMain();
+                    FragmentTransaction fragmentTransaction1 = getSupportFragmentManager().beginTransaction();
+                    fragmentTransaction1.replace(R.id.fram, fragmentMain, "Fragment Name"); //fram is layout id in activity_main.xml
+                    fragmentTransaction1.commit();
                     return true;
                 case R.id.navigation_notes:
-                    mTextMessage.setText(R.string.title_notes);
+                    setTitle("Fragment Notes"); // sets title of action bar
+                    FragmentNotes fragmentNotes = new FragmentNotes();
+                    FragmentTransaction fragmentTransaction2 = getSupportFragmentManager().beginTransaction();
+                    fragmentTransaction2.replace(R.id.fram, fragmentNotes, "Fragment Name"); //fram is layout id in activity_main.xml
+                    fragmentTransaction2.commit();
                     return true;
                 case R.id.navigation_settings:
-                    mTextMessage.setText(R.string.title_settings);
+                    setTitle("Settings"); // sets title of action bar
+                    FragmentSettings fragmentSettings = new FragmentSettings();
+                    FragmentTransaction fragmentTransaction3 = getSupportFragmentManager().beginTransaction();
+                    fragmentTransaction3.replace(R.id.fram, fragmentSettings, "Fragment Name"); //fram is layout id in activity_main.xml
+                    fragmentTransaction3.commit();
                     return true;
+                case R.id.navigation_data:
+                    setTitle("Data Transfer"); // sets title of action bar
+                    FragmentData fragmentData = new FragmentData();
+                    FragmentTransaction fragmentTransaction4 = getSupportFragmentManager().beginTransaction();
+                    fragmentTransaction4.replace(R.id.fram, fragmentData, "Fragment Name"); //fram is layout id in activity_main.xml
+                    fragmentTransaction4.commit();
             }
             return false;
         }
@@ -43,25 +62,32 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mTextMessage = (TextView) findViewById(R.id.message);
-        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
+       BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
-        dataDisplay = findViewById(R.id.test);
+        // Displays main fragment on app launch
+        setTitle("Fragment Epionic"); // sets title of action bar
+        FragmentMain fragmentMain = new FragmentMain();
+        FragmentTransaction fragmentTransaction1 = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction1.replace(R.id.fram, fragmentMain, "Fragment Name"); //fram is layout id in activity_main.xml
+        fragmentTransaction1.commit();
 
-        firstAnalyzer.startParse();
-
-        btnStringA = findViewById(R.id.btn_stringTest);
-        btnStringA.setOnClickListener(new View.OnClickListener() {
-           @Override
-           public void onClick(View v) {
+//        dataDisplay = findViewById(R.id.test);
+//
+//        firstAnalyzer.startParse();
 
 
-               firstAnalyzer.displayTemps(dataDisplay);
-
-
-           }
-       });
+//        btnStringA = findViewById(R.id.btn_stringTest);
+//        btnStringA.setOnClickListener(new View.OnClickListener() {
+//           @Override
+//           public void onClick(View v) {
+//
+//
+//               firstAnalyzer.displayTemps(dataDisplay);
+//
+//
+//           }
+//       });
     }
 
 
