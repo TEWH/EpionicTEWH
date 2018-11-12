@@ -12,13 +12,6 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
-    private TextView mTextMessage;
-    private Button btnStringA;
-    public  TextView dataDisplay;
-    private String inputString = "45,23#23,43#99,99#00,11,22,33,44,55,66,77,88,99,1010";
-    private String probeString = "#";
-    private String subSplitter = ",";
-    private StringAnalyzer firstAnalyzer = new StringAnalyzer(inputString, probeString, subSplitter);
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
 
@@ -33,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
                     fragmentTransaction1.commit();
                     return true;
                 case R.id.navigation_notes:
-                    setTitle("Fragment Notes"); // sets title of action bar
+                    setTitle("Notes"); // sets title of action bar
                     FragmentNotes fragmentNotes = new FragmentNotes();
                     FragmentTransaction fragmentTransaction2 = getSupportFragmentManager().beginTransaction();
                     fragmentTransaction2.replace(R.id.fram, fragmentNotes, "Fragment Name"); //fram is layout id in activity_main.xml
@@ -66,28 +59,12 @@ public class MainActivity extends AppCompatActivity {
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
         // Displays main fragment on app launch
-        setTitle("Fragment Epionic"); // sets title of action bar
+        setTitle("Epionic"); // sets title of action bar
         FragmentMain fragmentMain = new FragmentMain();
         FragmentTransaction fragmentTransaction1 = getSupportFragmentManager().beginTransaction();
         fragmentTransaction1.replace(R.id.fram, fragmentMain, "Fragment Name"); //fram is layout id in activity_main.xml
         fragmentTransaction1.commit();
 
-//        dataDisplay = findViewById(R.id.test);
-//
-//        firstAnalyzer.startParse();
-
-
-//        btnStringA = findViewById(R.id.btn_stringTest);
-//        btnStringA.setOnClickListener(new View.OnClickListener() {
-//           @Override
-//           public void onClick(View v) {
-//
-//
-//               firstAnalyzer.displayTemps(dataDisplay);
-//
-//
-//           }
-//       });
     }
 
 
