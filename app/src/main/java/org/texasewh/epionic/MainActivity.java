@@ -1,10 +1,15 @@
 package org.texasewh.epionic;
 
+import android.content.ContentValues;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -56,6 +61,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
+        insertNote("New note");
+
+        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
         // Displays main fragment on app launch
@@ -65,6 +73,14 @@ public class MainActivity extends AppCompatActivity {
         fragmentTransaction1.replace(R.id.fram, fragmentMain, "Fragment Name"); //fram is layout id in activity_main.xml
         fragmentTransaction1.commit();
 
+    }
+
+    private void insertNote(String noteText) {
+        ContentValues values = new ContentValues();
+        values.put(DBOpenHelper.NOTE_TEXT, noteText);
+        Uri noteUri = getContentResolver().insert(NotesProvider.CONTENT_URI,
+                values);
+        Log.d("MainActivity", "Inserted note " + noteUri.getLastPathSegment());
     }
 
 
