@@ -162,7 +162,7 @@ public class FragmentMain extends Fragment {
             {
                 // setUiEnabled(true);
                 deviceConnected=true;
-                beginListenForData(text1, text2, text2);
+                beginListenForData(text1, text2, text3);
                 status.append("\nConnection Opened!\n");
             }
 
