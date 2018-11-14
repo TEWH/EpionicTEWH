@@ -1,14 +1,156 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".FragmentMain">
+    android:layout_height="match_parent">
+    <!--tools:context=".homescreen">-->
 
-    <!-- TODO: Update blank fragment layout -->
+    <Button
+        android:id="@+id/t_button"
+        android:layout_width="110dp"
+        android:layout_height="50dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="136dp"
+        android:layout_marginLeft="136dp"
+        android:layout_marginBottom="148dp"
+        android:background="@drawable/rounded_button1"
+        android:text="Temperature"
+        android:textColor="#FFFAFAFA"
+        android:textSize="11sp" />
+
+
+    <android.support.design.widget.BottomNavigationView
+        android:id="@+id/navigation"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="0dp"
+        android:layout_marginEnd="0dp"
+        android:background="?android:attr/windowBackground"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:menu="@menu/navigation" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"></LinearLayout>
+    </android.support.design.widget.BottomNavigationView>
+
+
+    <Button
+        android:id="@+id/bp_button"
+        android:layout_width="110dp"
+        android:layout_height="50dp"
+        android:layout_alignStart="@+id/t_button"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="117dp"
+        android:layout_marginBottom="148dp"
+        android:background="@drawable/rounded_button1"
+        android:text="Blood Pressure"
+        android:textColor="#FFFAFAFA"
+        android:textSize="11sp" />
+
+    <Button
+        android:id="@+id/o_button"
+        android:layout_width="110dp"
+        android:layout_height="50dp"
+        android:layout_above="@+id/t_button"
+        android:layout_alignStart="@+id/t_button"
+        android:layout_marginStart="-118dp"
+        android:layout_marginBottom="-50dp"
+        android:background="@drawable/rounded_button1"
+        android:text="Oxygen Level"
+        android:textColor="#FFFAFAFA"
+        android:textSize="11sp" />
+
+    <Button
+        android:id="@+id/alerts"
+        android:layout_width="345dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/editText2"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="4dp"
+        android:layout_toEndOf="@+id/navigation"
+        android:background="@drawable/rounded_button2"
+        android:text="Alerts"
+        android:textColor="#FFFAFAFA" />
+
+    <ImageView
+        android:layout_width="390dp"
+        android:layout_height="198dp"
+        android:layout_above="@+id/t_button"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginLeft="0dp"
+        android:layout_marginBottom="11dp"
+        android:src="@drawable/epionic_pic" />
+
+
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Fragment 1" />
+        android:id="@+id/t_changing"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:text="Temperature:"
+        android:textSize="24sp" />
 
-</FrameLayout>
+    <TextView
+        android:id="@+id/bp_changing"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/t_changing"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="100dp"
+        android:text="BP: "
+        android:textSize="24sp" />
+
+    <TextView
+        android:id="@+id/o_changing"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/bp_changing"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="150dp"
+        android:text="PulseOx:"
+        android:textSize="24sp" />
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/changing_o"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginEnd="37dp"
+        android:layout_marginRight="37dp"
+        android:layout_marginBottom="1dp"
+        android:text="120/80"
+        android:textSize="24sp" />
+
+    <Button
+        android:id="@+id/start_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/alerts"
+        android:layout_centerHorizontal="true"
+        android:text="Button" />
+
+    <TextView
+        android:id="@+id/statusmessage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/start_button"
+        android:layout_alignTop="@+id/textView5"
+        android:text="no data yet" />
+
+</RelativeLayout>

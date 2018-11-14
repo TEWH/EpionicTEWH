@@ -1,7 +1,12 @@
 package org.texasewh.epionic;
 
 
+import android.bluetooth.BluetoothAdapter;
+import android.bluetooth.BluetoothDevice;
+import android.bluetooth.BluetoothSocket;
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -10,6 +15,12 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.util.Set;
+import java.util.UUID;
 
 
 /**
@@ -22,39 +33,23 @@ public class FragmentData extends Fragment {
         // Required empty public constructor
     }
 
+
+    TextView status;
+    private TextView mTextMessage;
     private Button btnStringA;
-    public  TextView dataDisplay;
-    private String inputString = "45,23#23,43#99,99#00,11,22,33,44,55,66,77,88,99,1010";
-    private String probeString = "#";
-    private String subSplitter = ",";
-    private StringAnalyzer firstAnalyzer = new StringAnalyzer(inputString, probeString, subSplitter);
-    private int Clicked =0;
+    //String holder = "";
+    int waitCounter=0;
 
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        //return inflater.inflate(R.layout.fragment_fragment_data, container, false);
-        View view1 = inflater.inflate(R.layout.fragment_fragment_data, container, false);
-
-
-        dataDisplay = view1.findViewById(R.id.test);
-
-        firstAnalyzer.startParse();
-
-        btnStringA = view1.findViewById(R.id.btn_stringTest);
-        btnStringA.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view1) {
-
-                firstAnalyzer.displayTemps(dataDisplay);
-                //dataDisplay.setText("Does it work?");
-                Clicked++;
-                Log.d("BtnStringA", "Times clicked: " + Clicked);
-            }
-        });
-        return view1;
+        @Override
+        public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                Bundle savedInstanceState) {
+            // Inflate the layout for this fragment
+            return inflater.inflate(R.layout.fragment_fragment_data, container, false);
     }
 
+
+
 }
+
+

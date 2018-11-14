@@ -3,33 +3,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".FragmentData">
+    tools:context=".FragmentNotes">
 
     <!-- TODO: Update blank fragment layout -->
     <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Data Transfer" />
-
-    <TextView
-        android:id="@+id/test"
-        android:layout_width="164dp"
-        android:layout_height="56dp"
-        android:layout_gravity="center"
-        android:layout_marginBottom="8dp"
-        android:layout_marginTop="86dp"
-        android:gravity="center"
-        android:text="TextView"
-        android:textSize="24sp" />
-
-
-
-    <Button
-        android:id="@+id/btn_stringTest"
-        android:layout_width="wrap_content"
-        android:layout_height="48dp"
-        android:layout_marginBottom="189dp"
-        android:layout_marginTop="19dp"
-        android:text="Button"/>
+        android:text="Fragment Data" />
 
 </FrameLayout>
