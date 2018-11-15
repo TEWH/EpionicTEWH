@@ -56,7 +56,7 @@ public class FragmentMain extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         //return inflater.inflate(R.layout.fragment_fragment_data, container, false);
-        View view1 = inflater.inflate(R.layout.fragment_fragment_main, container, false);
+        View view1 = inflater.inflate(R.layout.fragment_fragment_main2, container, false);
         // Change to fragment_fragment_main2 for better UI on tablet
 
         status = view1.findViewById(R.id.statusmessage);
