@@ -17,6 +17,7 @@ import android.widget.TextView;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.ArrayList;
 import java.util.Set;
 import java.util.UUID;
 
@@ -39,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
     //String holder = "";
     int waitCounter=0;
     private boolean MainFragVis;
+    private ArrayList dataListParser;
 
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
@@ -227,21 +229,20 @@ public class MainActivity extends AppCompatActivity {
 
                             handler.post(new Runnable() {
                                 public void run() {
-//                                   TextView oxygenField = findViewById(R.id.o_changing);
-//                                    TextView bpField = findViewById(R.id.bp_changing);
-//                                    TextView tpField = findViewById(R.id.t_changing);
+//
                                     if (string.length() == 9) {
                                         String[] dataInput = string.split("#");
                                         dataParser myParser = new dataParser(dataInput[0], dataInput[1].split(","));
 
                                         if (MainFragVis) {
 
-                                            //if (string.length() == 9) {
-                                            // String[] dataInput = string.split("#");
-                                            //   dataParser myParser = new dataParser(dataInput[0], dataInput[1].split(","), tpField, bpField, oxygenField);
-                                            //myParser.displayParsedData();
-                                            // }
 
+                                            TextView testView = findViewById(R.id.bp_changing);
+                                            dataListParser = myParser.displayParsedData();
+                                            for (int i = 0; i < dataListParser.size(); i++) {
+                                                testView.append((CharSequence) dataListParser.get(i));
+                                                if (i < dataListParser.size() - 1) testView.append(", ");
+                                            }
 
                                         }
                                     }

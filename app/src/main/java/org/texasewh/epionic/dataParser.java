@@ -2,12 +2,15 @@ package org.texasewh.epionic;
 
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
 class dataParser {
     String myDataType;
     String[] myDataArray;
     TextView t_changing;
     TextView bp_changing;
     TextView o_changing;
+    ArrayList  data_List = new ArrayList();
 
     public dataParser(String datatype, String[] dataArray){
         myDataType = datatype;
@@ -22,29 +25,32 @@ class dataParser {
         o_changing = poView;
     }
 
-    public void displayParsedData() {
+    public ArrayList displayParsedData() {
         switch (myDataType) {
             case "BP":
-                parseBP();
+                //parseBP();
+                parseBPData();
                 break;
             case "TP":
-                parseTemp();
+                //parseTemp();
                 break;
             //case "EC": parseECGData(data); break;
             case "PO":
-                parsePulseOx();
+               // parsePulseOx();
                 break;
             // default: status.append("The error is with parseTemp if this is reached");
         }
-
+    return data_List;
     }
 
     public void parseBP() {
         bp_changing.setText("Blood Pressure: ");
         for (int i = 0; i < myDataArray.length; i++) {
-            if (i % 2 == 1) bp_changing.append("\n");
-            bp_changing.append(myDataArray[i]);
-            if (i < myDataArray.length - 1) bp_changing.append(", ");
+            //if (i % 2 == 1) bp_changing.append("\n");
+            //bp_changing.append(myDataArray[i]);
+            //if (i < myDataArray.length - 1) bp_changing.append(", ");
+           // bp_List.add(myDataArray[i]);
+            //if (i < myDataArray.length - 1) bp_List.add(myDataArray[i]);
         }
     }
 
@@ -65,6 +71,14 @@ class dataParser {
             if (i < myDataArray.length - 1) o_changing.append(", ");
         }
 
+    }
+
+    public ArrayList parseBPData(){
+        for (int i = 0; i < myDataArray.length; i++) {
+            data_List.add(myDataArray[i]);
+            if (i < myDataArray.length - 1) data_List.add(myDataArray[i]);
+        }
+        return data_List;
     }
 
 }

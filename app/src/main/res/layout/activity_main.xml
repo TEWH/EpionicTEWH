@@ -19,7 +19,15 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             android:gravity="center"
-            android:layout_gravity="center"/>
+            android:layout_gravity="center">
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TextView"
+            android:textSize="24sp" />
+    </FrameLayout>
 
     <android.support.design.widget.BottomNavigationView
             android:id="@+id/navigation"
@@ -31,5 +39,8 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:menu="@menu/navigation"/>
+            app:menu="@menu/navigation">
+
+    </android.support.design.widget.BottomNavigationView>
+
 </android.support.constraint.ConstraintLayout>
