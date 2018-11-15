@@ -5,10 +5,10 @@
     android:layout_height="match_parent"
     tools:context=".FragmentNotes">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <ListView
+        android:id="@+id/android:list"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Fragment Notes" />
+        android:layout_height="match_parent"/>
+
 
 </FrameLayout>

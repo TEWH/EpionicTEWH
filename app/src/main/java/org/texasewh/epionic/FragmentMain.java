@@ -5,6 +5,7 @@ import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothSocket;
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
@@ -56,10 +57,11 @@ public class FragmentMain extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         //return inflater.inflate(R.layout.fragment_fragment_data, container, false);
-        View view1 = inflater.inflate(R.layout.fragment_fragment_main, container, false);
+        View view1 = inflater.inflate(R.layout.fragment_fragment_main2, container, false);
         // Change to fragment_fragment_main2 for better UI on tablet
 
         status = view1.findViewById(R.id.statusmessage);
+
 
         //onClickStart();
 
