@@ -9,6 +9,11 @@ class dataParser {
     TextView bp_changing;
     TextView o_changing;
 
+    public dataParser(String datatype, String[] dataArray){
+        myDataType = datatype;
+        myDataArray = dataArray;
+    }
+
     public dataParser(String datatype, String[] dataArray, TextView tempView, TextView bpView, TextView poView) {
         myDataType = datatype;
         myDataArray = dataArray;
