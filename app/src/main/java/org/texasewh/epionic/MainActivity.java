@@ -35,10 +35,9 @@ public class MainActivity extends AppCompatActivity {
     boolean stopThread;
 
     //TextView status;
-    private TextView mTextMessage;
+   // private TextView mTextMessage;
     private Button btnStringA;
-    //String holder = "";
-    int waitCounter=0;
+   // int waitCounter=0;
     private boolean MainFragVis;
     private ArrayList dataListParser;
 
@@ -102,18 +101,11 @@ public class MainActivity extends AppCompatActivity {
         fragmentTransaction1.commit();
         MainFragVis = true;
 
-//        TextView oxygenField1 = findViewById(R.id.o_changing);
-//        TextView bpField1 = findViewById(R.id.bp_changing);
-//        TextView tpField1 = findViewById(R.id.t_changing);
-        onClickStart(); // This is bad! right now :/
 
-//        btnStringA = findViewById(R.id.start_button); //(TextView) findViewById(R.id.t_changing); // click temp button for it to work //findViewById(R.id.btn_stringTest);
-//        btnStringA.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                onClickStart();
-//            }
-//        });
+        //Calls begins data transfer
+        onClickStart();
+
+
     }
 
 
@@ -163,7 +155,6 @@ public class MainActivity extends AppCompatActivity {
 
     public boolean BTconnect()
     {
-        //
         // status.append(" entered bTconnect");
         boolean connected=true;
         try {
@@ -197,6 +188,7 @@ public class MainActivity extends AppCompatActivity {
         {
             if(BTconnect())
             {
+                //TextView status = findViewById(R.id.statusmessage);
                 // setUiEnabled(true);
                 deviceConnected=true;
                 beginListenForData();
@@ -235,14 +227,9 @@ public class MainActivity extends AppCompatActivity {
                                         dataParser myParser = new dataParser(dataInput[0], dataInput[1].split(","));
 
                                         if (MainFragVis) {
-
-
                                             TextView testView = findViewById(R.id.bp_changing);
                                             dataListParser = myParser.displayParsedData();
-                                            for (int i = 0; i < dataListParser.size(); i++) {
-                                                testView.append((CharSequence) dataListParser.get(i));
-                                                if (i < dataListParser.size() - 1) testView.append(", ");
-                                            }
+                                            displayDataInTextView(testView,dataListParser);
 
                                         }
                                     }
@@ -264,7 +251,18 @@ public class MainActivity extends AppCompatActivity {
         thread.start();
     }
 
+private void displayDataInTextView(TextView textView, ArrayList arrayList){
+        textView.setText("");
+        textView.setText("Blood Pressure: ");
+    for (int i = 0; i < arrayList.size(); i++) {
+        textView.append((CharSequence) arrayList.get(i));
+        if (i < arrayList.size() - 1) textView.append(", ");
+    }
+
 }
+
+}
+
 
 
 
