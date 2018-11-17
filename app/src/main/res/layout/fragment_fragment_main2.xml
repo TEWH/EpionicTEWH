@@ -27,16 +27,21 @@
             android:text="Alerts"
             android:textColor="#FFFAFAFA" />
 
-        <ImageView
+        <com.jjoe64.graphview.GraphView
             android:layout_width="match_parent"
-            android:layout_height="198dp"
-            android:layout_above="@+id/t_button"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_marginBottom="10dp"
-            android:layout_marginLeft="0dp"
-            android:layout_marginStart="0dp"
-            android:src="@drawable/epionic_pic" />
+            android:layout_height="200dip"
+            android:id="@+id/graph" />
+
+        <!--<ImageView-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="198dp"-->
+            <!--android:layout_above="@+id/t_button"-->
+            <!--android:layout_alignParentLeft="true"-->
+            <!--android:layout_alignParentStart="true"-->
+            <!--android:layout_marginBottom="10dp"-->
+            <!--android:layout_marginLeft="0dp"-->
+            <!--android:layout_marginStart="0dp"-->
+            <!--android:src="@drawable/epionic_pic" />-->
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -116,6 +121,12 @@
             android:layout_marginTop="30dp"
             android:text="PulseOx:"
             android:textSize="20sp" />
+
+        <Button
+            android:id="@+id/start_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Button" />
 
         <!--<TextView-->
             <!--android:id="@+id/statusmessage"-->

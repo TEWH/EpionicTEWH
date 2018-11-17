@@ -11,6 +11,7 @@ class dataParser {
     TextView bp_changing;
     TextView o_changing;
     ArrayList  data_List = new ArrayList();
+    Integer label;
 
     public dataParser(String datatype, String[] dataArray){
         myDataType = datatype;
@@ -24,19 +25,26 @@ class dataParser {
         bp_changing = bpView;
         o_changing = poView;
     }
-
+/*
+Two solutions: Array list of array lists or array list with first element is label
+ */
     public ArrayList displayParsedData() {
         switch (myDataType) {
             case "BP":
                 //parseBP();
-                parseBPData();
+                parseData();
+                label = 1;
                 break;
             case "TP":
                 //parseTemp();
+                parseData();
+                label = 2;
                 break;
             //case "EC": parseECGData(data); break;
             case "PO":
                // parsePulseOx();
+                parseData();
+                label = 3;
                 break;
             // default: status.append("The error is with parseTemp if this is reached");
         }
@@ -73,7 +81,7 @@ class dataParser {
 
     }
 
-    public ArrayList parseBPData(){
+    public ArrayList parseData(){
         for (int i = 0; i < myDataArray.length; i++) {
             data_List.add(myDataArray[i]);
             if (i < myDataArray.length - 1) data_List.add(myDataArray[i]);

@@ -14,6 +14,11 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+
+import com.jjoe64.graphview.GraphView;
+import com.jjoe64.graphview.series.DataPoint;
+import com.jjoe64.graphview.series.LineGraphSeries;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -40,6 +45,8 @@ public class MainActivity extends AppCompatActivity {
    // int waitCounter=0;
     private boolean MainFragVis;
     private ArrayList dataListParser;
+
+
 
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
@@ -104,6 +111,17 @@ public class MainActivity extends AppCompatActivity {
 
         //Calls begins data transfer
         onClickStart();
+
+
+//        GraphView graph = (GraphView) findViewById(R.id.graph);
+//        LineGraphSeries<DataPoint> series = new LineGraphSeries<>(new DataPoint[] {
+//                new DataPoint(0, 1),
+//                new DataPoint(1, 5),
+//                new DataPoint(2, 3),
+//                new DataPoint(3, 2),
+//                new DataPoint(4, 6)
+//        });
+//        graph.addSeries(series);
 
 
     }
@@ -230,6 +248,7 @@ public class MainActivity extends AppCompatActivity {
                                             TextView testView = findViewById(R.id.bp_changing);
                                             dataListParser = myParser.displayParsedData();
                                             displayDataInTextView(testView,dataListParser);
+                                            //FragmentMain.setText("hello");
 
                                         }
                                     }

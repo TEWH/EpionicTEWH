@@ -14,6 +14,10 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.jjoe64.graphview.GraphView;
+import com.jjoe64.graphview.series.DataPoint;
+import com.jjoe64.graphview.series.LineGraphSeries;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -48,6 +52,8 @@ public class FragmentMain extends Fragment {
     private Button btnStringA;
     //String holder = "";
     int waitCounter = 0;
+    int xvalue = 4;
+    String myText = "";
 
 
     @Override
@@ -69,14 +75,36 @@ public class FragmentMain extends Fragment {
         final TextView oxygenField1 = view1.findViewById(R.id.o_changing);
         final TextView bpField1 = view1.findViewById(R.id.bp_changing);
         final TextView tpField1 = view1.findViewById(R.id.t_changing);
-        btnStringA = view1.findViewById(R.id.start_button); //(TextView) findViewById(R.id.t_changing); // click temp button for it to work //findViewById(R.id.btn_stringTest);
-//        btnStringA.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                onClickStart(oxygenField1, bpField1, tpField1);
-//            }
-//        });
+
+        // Create graph
+        GraphView graph = (GraphView) view1.findViewById(R.id.graph);
+        final LineGraphSeries<DataPoint> series = new LineGraphSeries<>(new DataPoint[]{
+                new DataPoint(0, 1),
+                new DataPoint(1, 5),
+                new DataPoint(2, 3),
+                new DataPoint(3, 2),
+                new DataPoint(4, 6)
+        });
+        graph.addSeries(series);
+
+        btnStringA = view1.findViewById(R.id.start_button);
+        btnStringA.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int randomY = (int) (Math.random() * 10 + 1);
+                xvalue++;
+                series.appendData(new DataPoint(xvalue, randomY), true, 10);
+            }
+        });
+
+        //Way to do this: whenever the code to get a string / data is called in MainActivity, put the data in a data structure (such as an ArrayList)
+        // that is gotten by this java file
+        //Then the data becomes the points that get added to the GraphView below
+
+
         return view1;
     }
+
 }
+
 
