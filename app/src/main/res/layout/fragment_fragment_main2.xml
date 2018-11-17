@@ -117,6 +117,12 @@
             android:text="PulseOx:"
             android:textSize="20sp" />
 
+        <Button
+            android:id="@+id/start_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Start Data Transfer" />
+
         <!--<TextView-->
             <!--android:id="@+id/statusmessage"-->
             <!--android:layout_width="match_parent"-->

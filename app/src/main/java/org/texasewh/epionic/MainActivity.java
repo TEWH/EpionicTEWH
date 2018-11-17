@@ -10,6 +10,7 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
+import android.view.GestureDetector;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -102,8 +103,24 @@ public class MainActivity extends AppCompatActivity {
         MainFragVis = true;
 
 
-        //Calls begins data transfer
+        //Calls begins data transfer on start up
         onClickStart();
+
+        /* Data transfer initialized on start up does appear to be causing delay to launch time
+        I tried to solve this by adding back in the button like before however there is a slight issue
+        now that the data transfer code all lives in the activity. When i put the onClickListener here
+        I get the null pointer error since the button does not exhisit yet
+        When i put it in the fragment and call the method by creating an instance of the main activity
+        nothing happens
+         */
+        //code for button to start data transfer
+//        btnStringA = findViewById(R.id.start_button); //(TextView) findViewById(R.id.t_changing); // click temp button for it to work //findViewById(R.id.btn_stringTest);
+//        btnStringA.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                onClickStart();
+//            }
+//        });
 
 
     }
@@ -226,10 +243,14 @@ public class MainActivity extends AppCompatActivity {
                                         String[] dataInput = string.split("#");
                                         dataParser myParser = new dataParser(dataInput[0], dataInput[1].split(","));
 
+
                                         if (MainFragVis) {
-                                            TextView testView = findViewById(R.id.bp_changing);
                                             dataListParser = myParser.displayParsedData();
-                                            displayDataInTextView(testView,dataListParser);
+
+                                            // Displays arrayList for BP
+                                            displayData();
+
+
 
                                         }
                                     }
@@ -251,15 +272,40 @@ public class MainActivity extends AppCompatActivity {
         thread.start();
     }
 
-private void displayDataInTextView(TextView textView, ArrayList arrayList){
-        textView.setText("");
-        textView.setText("Blood Pressure: ");
-    for (int i = 0; i < arrayList.size(); i++) {
-        textView.append((CharSequence) arrayList.get(i));
-        if (i < arrayList.size() - 1) textView.append(", ");
+    // Need to fix bug of elements 0 and 1 displaying twice
+    private void displayDataInTextView(TextView textView, ArrayList arrayList){
+        textView.append("");
+        //textView.setText("Blood Pressure: ");
+        for (int i = 1; i < arrayList.size(); i++) {
+            textView.append((CharSequence) arrayList.get(i));
+            if (i < arrayList.size() - 1) textView.append(", ");
+         }
+
     }
 
-}
+    private void displayData() {
+
+        String label = dataListParser.get(0).toString();
+        switch  (label) {
+            case "1":
+                TextView textViewBP = findViewById(R.id.bp_changing);
+                textViewBP.setText("BloodPressure: ");
+                displayDataInTextView(textViewBP,dataListParser);
+                break;
+            case "2":
+                TextView textViewTP = findViewById(R.id.t_changing);
+                textViewTP.setText("Temperature: ");
+                displayDataInTextView(textViewTP,dataListParser);
+                break;
+            case "3":
+                TextView textViewO = findViewById(R.id.o_changing);
+                textViewO.setText("Oxygen Level: ");
+                displayDataInTextView(textViewO,dataListParser);
+                break;
+            }
+
+    }
+
 
 }
 

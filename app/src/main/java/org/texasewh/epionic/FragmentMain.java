@@ -69,11 +69,18 @@ public class FragmentMain extends Fragment {
         final TextView oxygenField1 = view1.findViewById(R.id.o_changing);
         final TextView bpField1 = view1.findViewById(R.id.bp_changing);
         final TextView tpField1 = view1.findViewById(R.id.t_changing);
-        btnStringA = view1.findViewById(R.id.start_button); //(TextView) findViewById(R.id.t_changing); // click temp button for it to work //findViewById(R.id.btn_stringTest);
+
+        oxygenField1.setText("Oxygen Level");
+        bpField1.setText("Blood Pressure");
+        tpField1.setText("Temperature");
+
+//       Code for button to start data transfer, see not in main activity
+//        final MainActivity activity = new MainActivity();
+//        btnStringA = view1.findViewById(R.id.start_button); //(TextView) findViewById(R.id.t_changing); // click temp button for it to work //findViewById(R.id.btn_stringTest);
 //        btnStringA.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View v) {
-//                onClickStart(oxygenField1, bpField1, tpField1);
+//                activity.onClickStart();
 //            }
 //        });
         return view1;
