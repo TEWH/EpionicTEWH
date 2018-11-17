@@ -276,7 +276,7 @@ public class MainActivity extends AppCompatActivity {
     private void displayDataInTextView(TextView textView, ArrayList arrayList){
         textView.append("");
         //textView.setText("Blood Pressure: ");
-        for (int i = 1; i < arrayList.size(); i++) {
+        for (int i = 0; i < arrayList.size(); i++) {
             textView.append((CharSequence) arrayList.get(i));
             if (i < arrayList.size() - 1) textView.append(", ");
          }
@@ -286,6 +286,7 @@ public class MainActivity extends AppCompatActivity {
     private void displayData() {
 
         String label = dataListParser.get(0).toString();
+        dataListParser.remove(0); // Now the first element won't be the same
         switch  (label) {
             case "1":
                 TextView textViewBP = findViewById(R.id.bp_changing);
