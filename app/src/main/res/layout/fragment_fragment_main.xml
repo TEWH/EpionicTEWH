@@ -10,31 +10,46 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginRight="10dp"
+        android:layout_alignParentTop="true"
         android:layout_marginLeft="10dp"
+        android:layout_marginTop="0dp"
+        android:layout_marginRight="10dp"
         android:orientation="vertical">
 
-        <Button
-            android:id="@+id/alerts"
+        <TableRow
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/editText2"
-            android:layout_toEndOf="@+id/navigation"
-            android:layout_marginBottom="10dp"
-            android:layout_marginTop="5dp"
-            android:background="@drawable/rounded_button2"
-            android:text="Alerts"
-            android:textColor="#FFFAFAFA" />
+            android:layout_height="49dp">
+
+            <ImageButton
+                android:id="@+id/imageButton"
+                style="@style/Widget.AppCompat.ImageButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/ic_notifications_black_24dp" />
+
+            <Button
+                android:id="@+id/alerts"
+                android:layout_width="match_parent"
+                android:layout_height="33dp"
+                android:layout_below="@+id/editText2"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="10dp"
+                android:layout_toEndOf="@+id/navigation"
+                android:background="@color/colorAccent"
+                android:text="Alerts"
+                android:textColor="#FFFAFAFA" />
+
+        </TableRow>
 
         <ImageView
             android:layout_width="match_parent"
-            android:layout_height="198dp"
+            android:layout_height="137dp"
             android:layout_above="@+id/t_button"
-            android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:layout_marginBottom="10dp"
-            android:layout_marginLeft="0dp"
+            android:layout_alignParentLeft="true"
             android:layout_marginStart="0dp"
+            android:layout_marginLeft="0dp"
+            android:layout_marginBottom="10dp"
             android:src="@drawable/epionic_pic" />
 
         <LinearLayout
@@ -45,12 +60,12 @@
             <Button
                 android:id="@+id/bp_button"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_alignParentBottom="true"
+                android:layout_height="30dp"
                 android:layout_alignStart="@+id/t_button"
+                android:layout_alignParentBottom="true"
                 android:layout_marginRight="5dp"
                 android:layout_weight="1"
-                android:background="@drawable/rounded_button1"
+                android:background="@color/colorAccent"
                 android:text="Blood Pressure"
                 android:textColor="#FFFAFAFA"
                 android:textSize="11sp" />
@@ -58,12 +73,12 @@
             <Button
                 android:id="@+id/o_button"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="30dp"
                 android:layout_above="@+id/t_button"
                 android:layout_alignStart="@+id/t_button"
                 android:layout_marginRight="5dp"
                 android:layout_weight="1"
-                android:background="@drawable/rounded_button1"
+                android:background="@color/colorAccent"
                 android:text="Oxygen Level"
                 android:textColor="#FFFAFAFA"
                 android:textSize="11sp" />
@@ -71,53 +86,112 @@
             <Button
                 android:id="@+id/t_button"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_alignParentBottom="true"
-                android:layout_alignParentLeft="true"
+                android:layout_height="30dp"
                 android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentBottom="true"
                 android:layout_weight="1"
-                android:background="@drawable/rounded_button1"
+                android:background="@color/colorAccent"
                 android:text="Temperature"
                 android:textColor="#FFFAFAFA"
                 android:textSize="11sp" />
 
         </LinearLayout>
 
-        <TextView
-            android:id="@+id/t_changing"
+        <Space
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:text="Temperature:"
-            android:textSize="20sp" />
+            android:layout_height="10dp " />
 
-        <TextView
-            android:id="@+id/bp_changing"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_alignTop="@+id/t_changing"
-            android:layout_marginTop="20dp"
-            android:text="BP: "
-            android:textSize="20sp" />
+            android:layout_height="199dp"
+            android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/o_changing"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_alignTop="@+id/bp_changing"
-            android:layout_marginTop="30dp"
-            android:text="PulseOx:"
-            android:textSize="20sp" />
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize">
+
+                <ImageView
+                    android:id="@+id/imageView"
+                    android:layout_width="82dp"
+                    android:layout_height="match_parent"
+                    tools:srcCompat="@drawable/tempIcon" />
+
+                <TextView
+                    android:id="@+id/t_changing"
+                    android:layout_width="275dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="10dp"
+                    android:text="Temperature:"
+                    android:textSize="20sp" />
+
+            </TableRow>
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="10dp" />
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="?android:attr/actionBarSize">
+
+                <ImageView
+                    android:id="@+id/imageView2"
+                    android:layout_width="82dp"
+                    android:layout_height="wrap_content"
+                    app:srcCompat="@drawable/bloodpressure" />
+
+                <TextView
+                    android:id="@+id/bp_changing"
+                    android:layout_width="275dp"
+                    android:layout_height="match_parent"
+                    android:layout_alignTop="@+id/t_changing"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginTop="20dp"
+                    android:text="BP: "
+                    android:textSize="20sp" />
+
+            </TableRow>
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="10dp" />
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="?android:attr/actionBarSize">
+
+                <ImageView
+                    android:id="@+id/imageView4"
+                    android:layout_width="82dp"
+                    android:layout_height="match_parent"
+                    app:srcCompat="@drawable/hrate" />
+
+                <TextView
+                    android:id="@+id/o_changing"
+                    android:layout_width="275dp "
+                    android:layout_height="match_parent"
+                    android:layout_alignTop="@+id/bp_changing"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginTop="30dp"
+                    android:text="PulseOx:"
+                    android:textSize="20sp" />
+            </TableRow>
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="10dp" />
+
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_alignStart="@+id/null"
             android:orientation="horizontal">
 
             <Button
