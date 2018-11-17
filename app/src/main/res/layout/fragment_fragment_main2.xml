@@ -123,16 +123,16 @@
             android:layout_height="wrap_content"
             android:text="Start Data Transfer" />
 
-        <!--<TextView-->
-            <!--android:id="@+id/statusmessage"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_alignStart="@+id/start_button"-->
-            <!--android:layout_alignTop="@+id/textView5"-->
-            <!--android:layout_weight="1"-->
-            <!--android:background="#FFFF99"-->
-            <!--android:text="Status: No data"-->
-            <!--android:textSize="20sp" />-->
+        <TextView
+            android:id="@+id/statusmessage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/start_button"
+            android:layout_alignTop="@+id/textView5"
+            android:layout_weight="1"
+            android:background="#FFFF99"
+            android:text="Status: No data"
+            android:textSize="20sp" />
 
     </LinearLayout>
 

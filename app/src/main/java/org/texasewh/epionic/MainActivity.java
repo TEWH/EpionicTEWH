@@ -21,6 +21,7 @@ import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.Set;
 import java.util.UUID;
+import android.app.Fragment;
 
 public class MainActivity extends AppCompatActivity {
     private final String DEVICE_ADDRESS="98:D3:71:FD:4C:B6";
@@ -41,7 +42,8 @@ public class MainActivity extends AppCompatActivity {
    // int waitCounter=0;
     private boolean MainFragVis;
     private ArrayList dataListParser;
-
+    private Bundle mBundle;
+    private FragmentMain fragmentMain;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -93,14 +95,24 @@ public class MainActivity extends AppCompatActivity {
        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
+        mBundle = new Bundle();
+        mBundle.putString("edttext", "Hello this is Nikhil nikhil nikhil 737238789");
+      //  ArrayList NikhilArray = new ArrayList<String>();
+       // NikhilArray.add("This is NikhilArray :)");
+       // mBundle.putParcelable("myObject", NikhilArray );
+        //To do this with an object, you need to use bundle.putParcelable
+
+        // set Fragmentclass Arguments
+      //  Fragmentclass fragobj = new Fragmentclass();
+       // fragobj.setArguments(bundle);
 
         // Displays main fragment on app launch
         setTitle("Epionic"); // sets title of action bar
-        FragmentMain fragmentMain = new FragmentMain();
-        FragmentTransaction fragmentTransaction1 = getSupportFragmentManager().beginTransaction();
-        fragmentTransaction1.replace(R.id.fram, fragmentMain, "Fragment Name"); //fram is layout id in activity_main.xml
-        fragmentTransaction1.commit();
-        MainFragVis = true;
+       // fragmentMain = new FragmentMain();
+       // fragmentMain.setArguments(mBundle); // Solid! This is what should work
+      //  mBundle.putString("dataInput", "");
+      //  fragmentMain.setArguments(mBundle);
+
 
 
         //Calls begins data transfer on start up
@@ -239,9 +251,12 @@ public class MainActivity extends AppCompatActivity {
                             handler.post(new Runnable() {
                                 public void run() {
 //
+                                    fragmentMain = new FragmentMain();
                                     if (string.length() == 9) {
                                         String[] dataInput = string.split("#");
                                         dataParser myParser = new dataParser(dataInput[0], dataInput[1].split(","));
+                                        mBundle.putString("dataInput", string);
+                                        fragmentMain.setArguments(mBundle);
 
 
                                         if (MainFragVis) {
@@ -254,6 +269,16 @@ public class MainActivity extends AppCompatActivity {
 
                                         }
                                     }
+                                    else {
+                                        mBundle.putString("dataInput", "");
+                                        fragmentMain.setArguments(mBundle);
+                                    }
+
+                                   FragmentTransaction fragmentTransaction1 = getSupportFragmentManager().beginTransaction();
+                                    fragmentTransaction1.replace(R.id.fram, fragmentMain, "Fragment Name"); //fram is layout id in activity_main.xml
+                                    fragmentTransaction1.commit();
+                                    MainFragVis = true;
+
 
                                 }
 
@@ -292,6 +317,7 @@ public class MainActivity extends AppCompatActivity {
                 TextView textViewBP = findViewById(R.id.bp_changing);
                 textViewBP.setText("BloodPressure: ");
                 displayDataInTextView(textViewBP,dataListParser);
+
                 break;
             case "2":
                 TextView textViewTP = findViewById(R.id.t_changing);

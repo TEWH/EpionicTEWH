@@ -56,8 +56,13 @@ public class FragmentMain extends Fragment {
         // Inflate the layout for this fragment
         View view1 = inflater.inflate(R.layout.fragment_fragment_main2, container, false);
         // Change to fragment_fragment_main2 for better UI on tablet
+        String newDataInput = getArguments().getString("dataInput");
 
+       // String strtext = getArguments().getString("edttext");
         status = view1.findViewById(R.id.statusmessage);
+        status.setText(newDataInput);
+        //return inflater.inflate(R.layout.fragment_fragment_main, container, false);
+
 
         //onClickStart();
 
@@ -74,15 +79,15 @@ public class FragmentMain extends Fragment {
         bpField1.setText("Blood Pressure");
         tpField1.setText("Temperature");
 
-//       Code for button to start data transfer, see not in main activity
-//        final MainActivity activity = new MainActivity();
-//        btnStringA = view1.findViewById(R.id.start_button); //(TextView) findViewById(R.id.t_changing); // click temp button for it to work //findViewById(R.id.btn_stringTest);
-//        btnStringA.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                activity.onClickStart();
-//            }
-//        });
+    //   Code for button to start data transfer, see not in main activity
+        // MainActivity activity = this.super();
+        btnStringA = view1.findViewById(R.id.start_button); //(TextView) findViewById(R.id.t_changing); // click temp button for it to work //findViewById(R.id.btn_stringTest);
+        btnStringA.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //activity.onClickStart();
+            }
+        });
         return view1;
     }
 }
