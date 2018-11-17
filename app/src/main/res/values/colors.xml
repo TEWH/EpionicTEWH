@@ -7,4 +7,8 @@
     <color name="background_material_light">#fafafa</color>
     <color name="small_buttons">#ffec5633</color>
     <color name="large_button">#d63d41</color>
+    <color name="primary">#3F51B5</color>
+    <color name="primary_dark">#1A237E</color>
+    <color name="accent">#C5CAE9</color>
+    <color name="list_item_text">#333</color>
 </resources>

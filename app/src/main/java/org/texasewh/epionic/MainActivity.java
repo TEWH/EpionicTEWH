@@ -2,6 +2,7 @@ package org.texasewh.epionic;
 
 import android.annotation.TargetApi;
 import android.content.ContentValues;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -23,6 +24,7 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
+    NotesActivity NActivity = new NotesActivity();
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -38,12 +40,15 @@ public class MainActivity extends AppCompatActivity {
                     fragmentTransaction1.commit();
                     return true;
                 case R.id.navigation_notes:
-                    setTitle("Notes"); // sets title of action bar
-                    FragmentNotes fragmentNotes = new FragmentNotes();
-                    FragmentTransaction fragmentTransaction2 = getSupportFragmentManager().beginTransaction();
-                    fragmentTransaction2.replace(R.id.fram, fragmentNotes, "Fragment Name"); //fram is layout id in activity_main.xml
-                    fragmentTransaction2.commit();
-                    return true;
+//                    setTitle("Notes"); // sets title of action bar
+//                    FragmentNotes fragmentNotes = new FragmentNotes();
+//                    FragmentTransaction fragmentTransaction2 = getSupportFragmentManager().beginTransaction();
+//                    fragmentTransaction2.replace(R.id.fram, fragmentNotes, "Fragment Name"); //fram is layout id in activity_main.xml
+//                    fragmentTransaction2.commit();
+//                    return true;
+                    Intent intent = new Intent(getBaseContext(), NotesActivity.class);
+                    startActivity(intent);
+
                 case R.id.navigation_settings:
                     setTitle("Settings"); // sets title of action bar
                     FragmentSettings fragmentSettings = new FragmentSettings();

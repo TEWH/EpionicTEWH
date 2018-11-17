@@ -26,6 +26,16 @@
             android:authorities="org.texasewh.epionic.notesprovider"
             android:exported="false" />
 
+        <activity android:name=".NotesActivity" />
+        <activity
+            android:name=".NotesEditorActivity"
+            android:label="@string/title_activity_editor"
+            android:parentActivityName=".NotesActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="org.texasewh.epionic.NotesActivity" />
+        </activity>
     </application>
 
 </manifest>
