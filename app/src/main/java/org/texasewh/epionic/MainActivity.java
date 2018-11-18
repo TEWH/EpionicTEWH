@@ -263,7 +263,8 @@ public class MainActivity extends AppCompatActivity {
                                             dataListParser = myParser.displayParsedData();
 
                                             // Displays arrayList for BP
-                                            displayData();
+
+                                                displayData();
 
 
 
@@ -302,7 +303,7 @@ public class MainActivity extends AppCompatActivity {
         textView.append("");
         //textView.setText("Blood Pressure: ");
         for (int i = 0; i < arrayList.size(); i++) {
-            textView.append((CharSequence) arrayList.get(i));
+            textView.append( (String) arrayList.get(i) );
             if (i < arrayList.size() - 1) textView.append(", ");
          }
 
