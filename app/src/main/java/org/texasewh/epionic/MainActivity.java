@@ -266,17 +266,14 @@ public class MainActivity extends AppCompatActivity {
                                         mBundle.putString("TPString", currentTP);
                                         mBundle.putString("BPString", currentBP);
                                         fragmentMain.setArguments(mBundle);
-
+                                    /*    if (MainFragVis) {
+                                            dataListParser = myParser.displayParsedData();
+                                            displayData();
+                                        }*/
 
                                         if (MainFragVis) {
                                             dataListParser = myParser.displayParsedData();
-
-                                            // Displays arrayList for BP
-
-                                                displayData();
-
-
-
+                                           displayData();
                                         }
                                     }
                                     else {
@@ -290,14 +287,15 @@ public class MainActivity extends AppCompatActivity {
                                     textViewTP.setText("Temperature: " + currentTP);
                                     TextView textViewBP = findViewById(R.id.bp_changing);
                                     textViewBP.setText("Blood Pressure: " + currentBP);*/
-                                    TextView textViewBP = findViewById(R.id.bp_changing);
-                                    TextView textViewTP = findViewById(R.id.t_changing);
-                                    TextView textViewO = findViewById(R.id.o_changing);
-                                    if (MainFragVis) {
+
+                                    //TextView textViewBP = findViewById(R.id.bp_changing);
+                                    //TextView textViewTP = findViewById(R.id.t_changing);
+                                    //TextView textViewO = findViewById(R.id.o_changing);
+                                    /*if (MainFragVis) {
                                         textViewBP.setText("Blood Pressure: " + currentBP);
                                         textViewTP.setText("Temperature: "+currentTP);
                                         textViewO.setText("Oxygen Level: "+currentPO);
-                                    }
+                                    }*/
                                     mBundle.putString("POString", currentPO);
                                     mBundle.putString("TPString", currentTP);
                                     mBundle.putString("BPString", currentBP);
@@ -365,21 +363,21 @@ public class MainActivity extends AppCompatActivity {
         switch  (label) {
             case "1":
                 currentBP=dataListParser.toString();
-                textViewBP.setText("Blood Pressure: " + currentBP);
-                textViewTP.setText("Temperature: "+currentTP);
-                textViewO.setText("Oxygen Level: "+currentPO);
+              //  textViewBP.setText("Blood Pressure: " + currentBP);
+              //  textViewTP.setText("Temperature: "+currentTP);
+              //  textViewO.setText("Oxygen Level: "+currentPO);
                 break;
             case "2":
                 currentTP=dataListParser.toString();
-                textViewBP.setText("Blood Pressure: " + currentBP);
-                textViewTP.setText("Temperature: "+currentTP);
-                textViewO.setText("Oxygen Level: "+currentPO);
+              //  textViewBP.setText("Blood Pressure: " + currentBP);
+              //  textViewTP.setText("Temperature: "+currentTP);
+              //  textViewO.setText("Oxygen Level: "+currentPO);
                 break;
             case "3":
                 currentPO=dataListParser.toString();
-                textViewBP.setText("Blood Pressure: " + currentBP);
-                textViewTP.setText("Temperature: "+currentTP);
-                textViewO.setText("Oxygen Level: "+currentPO);
+              //  textViewBP.setText("Blood Pressure: " + currentBP);
+              //  textViewTP.setText("Temperature: "+currentTP);
+              //  textViewO.setText("Oxygen Level: "+currentPO);
                 break;
         }
 
