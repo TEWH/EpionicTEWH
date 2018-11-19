@@ -22,3 +22,5 @@ Next steps:
 -Temporary solution to the redrawing 3 pieces of info problem could be simply sending the most recent BP/Temp reading even when it has
 updated Oxygen reading, for ex; this avoids sending massive amounts of info in the form of a Parcelable at once, and this strategy
 could also work for ECG in the form of sending the last few readings to maintain them on the redrawn graph
+
+-It's possible that we could make the only background process be the flagging system, and we could separate that from anything to do with buttons. That could potentially reduce the possibility for crashes because it would provide more opportunities to structure the code differently.
