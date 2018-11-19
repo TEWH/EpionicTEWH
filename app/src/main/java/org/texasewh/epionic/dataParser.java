@@ -29,17 +29,17 @@ class dataParser {
         switch (myDataType) {
             case "BP":
                 //parseBP();
-                data_List.add(0,1);
+                data_List.add(0,"1");
                 parseData(data_List);
                 break;
             case "TP":
                 //parseTemp();
-                data_List.add(0,2);
+                data_List.add(0,"2");
                 parseData(data_List);
                 break;
             //case "EC": parseECGData(data); break;
             case "PO":
-                data_List.add(0,3);
+                data_List.add(0,"3");
                 parseData(data_List);
                 break;
             // default: status.append("The error is with parseTemp if this is reached");

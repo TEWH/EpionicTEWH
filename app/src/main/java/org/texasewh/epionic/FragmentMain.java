@@ -57,6 +57,10 @@ public class FragmentMain extends Fragment {
         View view1 = inflater.inflate(R.layout.fragment_fragment_main2, container, false);
         // Change to fragment_fragment_main2 for better UI on tablet
         String newDataInput = getArguments().getString("dataInput");
+        String receivedPO = getArguments().getString("POString");
+        String receivedBP = getArguments().getString("BPString");
+        String receivedTP = getArguments().getString("TPString");
+
 
        // String strtext = getArguments().getString("edttext");
         status = view1.findViewById(R.id.statusmessage);
@@ -75,9 +79,18 @@ public class FragmentMain extends Fragment {
         final TextView bpField1 = view1.findViewById(R.id.bp_changing);
         final TextView tpField1 = view1.findViewById(R.id.t_changing);
 
-        oxygenField1.setText("Oxygen Level");
-        bpField1.setText("Blood Pressure");
-        tpField1.setText("Temperature");
+
+        //I NEED TO COMMENT OUT THE BELOW METHODS /UNTIL I SEND THE DATA ON display STRINGS FROM THE ACTIVITY TO THE FRAGMENT
+
+        oxygenField1.setText("Oxygen Level: " + receivedPO + " [frag]");
+        bpField1.setText("Blood Pressure: " + receivedBP + " [frag]");
+        tpField1.setText("Temperature: " +receivedTP + " [frag]");
+
+      /*  oxygenField1.setText("Oxygen Level: " + receivedPO + " [this is inside fragment not activity]");
+        bpField1.setText("Blood Pressure: " + receivedBP + " [this is inside fragment not activity]");
+        tpField1.setText("Temperature: " +receivedTP + " [this is inside fragment not activity]");*/
+
+        //ABOVE IS IMPT MAYBE
 
     //   Code for button to start data transfer, see not in main activity
         // MainActivity activity = this.super();

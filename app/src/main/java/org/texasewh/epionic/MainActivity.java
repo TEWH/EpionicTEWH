@@ -44,6 +44,9 @@ public class MainActivity extends AppCompatActivity {
     private ArrayList dataListParser;
     private Bundle mBundle;
     private FragmentMain fragmentMain;
+    private String currentBP="0";
+    private String currentPO="0";
+    private String currentTP="0";
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -97,6 +100,9 @@ public class MainActivity extends AppCompatActivity {
 
         mBundle = new Bundle();
         mBundle.putString("edttext", "Hello this is Nikhil nikhil nikhil 737238789");
+        mBundle.putString("POString", currentPO);
+        mBundle.putString("TPString", currentTP);
+        mBundle.putString("BPString", currentBP);
       //  ArrayList NikhilArray = new ArrayList<String>();
        // NikhilArray.add("This is NikhilArray :)");
        // mBundle.putParcelable("myObject", NikhilArray );
@@ -256,6 +262,9 @@ public class MainActivity extends AppCompatActivity {
                                         String[] dataInput = string.split("#");
                                         dataParser myParser = new dataParser(dataInput[0], dataInput[1].split(","));
                                         mBundle.putString("dataInput", string);
+                                        mBundle.putString("POString", currentPO);
+                                        mBundle.putString("TPString", currentTP);
+                                        mBundle.putString("BPString", currentBP);
                                         fragmentMain.setArguments(mBundle);
 
 
@@ -275,10 +284,28 @@ public class MainActivity extends AppCompatActivity {
                                         fragmentMain.setArguments(mBundle);
                                     }
 
+                                   /* TextView textViewO = findViewById(R.id.o_changing);
+                                    textViewO.setText("Oxygen Level:" + currentPO);
+                                    TextView textViewTP = findViewById(R.id.t_changing);
+                                    textViewTP.setText("Temperature: " + currentTP);
+                                    TextView textViewBP = findViewById(R.id.bp_changing);
+                                    textViewBP.setText("Blood Pressure: " + currentBP);*/
+                                    TextView textViewBP = findViewById(R.id.bp_changing);
+                                    TextView textViewTP = findViewById(R.id.t_changing);
+                                    TextView textViewO = findViewById(R.id.o_changing);
+                                    if (MainFragVis) {
+                                        textViewBP.setText("Blood Pressure: " + currentBP);
+                                        textViewTP.setText("Temperature: "+currentTP);
+                                        textViewO.setText("Oxygen Level: "+currentPO);
+                                    }
+                                    mBundle.putString("POString", currentPO);
+                                    mBundle.putString("TPString", currentTP);
+                                    mBundle.putString("BPString", currentBP);
                                    FragmentTransaction fragmentTransaction1 = getSupportFragmentManager().beginTransaction();
                                     fragmentTransaction1.replace(R.id.fram, fragmentMain, "Fragment Name"); //fram is layout id in activity_main.xml
                                     fragmentTransaction1.commit();
                                     MainFragVis = true;
+
 
 
                                 }
@@ -313,24 +340,48 @@ public class MainActivity extends AppCompatActivity {
 
         String label = dataListParser.get(0).toString();
         dataListParser.remove(0); // Now the first element won't be the same
-        switch  (label) {
+     /*   switch  (label) {
             case "1":
-                TextView textViewBP = findViewById(R.id.bp_changing);
-                textViewBP.setText("BloodPressure: ");
-                displayDataInTextView(textViewBP,dataListParser);
-
+                String myStorer="";
+               // for (String i: dataListParser){ myStorer = myStorer+ i; }
+               // currentBP = myStorer;
                 break;
             case "2":
-                TextView textViewTP = findViewById(R.id.t_changing);
-                textViewTP.setText("Temperature: ");
-                displayDataInTextView(textViewTP,dataListParser);
+                String myStorer1="";
+               // for (String i: dataListParser){ myStorer1 = myStorer1+ i; }
+             //   currentTP = myStorer1;
                 break;
             case "3":
-                TextView textViewO = findViewById(R.id.o_changing);
-                textViewO.setText("Oxygen Level: ");
-                displayDataInTextView(textViewO,dataListParser);
+                String myStorer2="";
+                //for (String i: dataListParser){ myStorer2 = myStorer2+ i; }
+               // currentPO = myStorer2;
                 break;
-            }
+            }*/
+
+        TextView textViewBP = findViewById(R.id.bp_changing);
+        TextView textViewTP = findViewById(R.id.t_changing);
+        TextView textViewO = findViewById(R.id.o_changing);
+
+        switch  (label) {
+            case "1":
+                currentBP=dataListParser.toString();
+                textViewBP.setText("Blood Pressure: " + currentBP);
+                textViewTP.setText("Temperature: "+currentTP);
+                textViewO.setText("Oxygen Level: "+currentPO);
+                break;
+            case "2":
+                currentTP=dataListParser.toString();
+                textViewBP.setText("Blood Pressure: " + currentBP);
+                textViewTP.setText("Temperature: "+currentTP);
+                textViewO.setText("Oxygen Level: "+currentPO);
+                break;
+            case "3":
+                currentPO=dataListParser.toString();
+                textViewBP.setText("Blood Pressure: " + currentBP);
+                textViewTP.setText("Temperature: "+currentTP);
+                textViewO.setText("Oxygen Level: "+currentPO);
+                break;
+        }
 
     }
 
