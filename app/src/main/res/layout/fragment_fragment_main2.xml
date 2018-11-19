@@ -14,6 +14,11 @@
         android:layout_marginLeft="5dp"
         android:orientation="vertical">
 
+        <com.jjoe64.graphview.GraphView
+            android:layout_width="match_parent"
+            android:layout_height="200dip"
+            android:id="@+id/graph" />
+
         <Button
             android:id="@+id/alerts"
             android:layout_width="match_parent"
@@ -36,6 +41,7 @@
             android:layout_marginBottom="10dp"
             android:layout_marginLeft="0dp"
             android:layout_marginStart="0dp"
+            android:visibility="invisible"
             android:src="@drawable/epionic_pic" />
 
         <LinearLayout

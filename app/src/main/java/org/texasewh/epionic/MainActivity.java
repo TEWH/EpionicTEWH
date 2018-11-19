@@ -23,6 +23,10 @@ import java.util.Set;
 import java.util.UUID;
 import android.app.Fragment;
 
+import com.jjoe64.graphview.GraphView;
+import com.jjoe64.graphview.series.DataPoint;
+import com.jjoe64.graphview.series.LineGraphSeries;
+
 public class MainActivity extends AppCompatActivity {
     private final String DEVICE_ADDRESS="98:D3:71:FD:4C:B6";
     private final UUID PORT_UUID = UUID.fromString("00001101-0000-1000-8000-00805f9b34fb");//Serial Port Service ID

@@ -20,6 +20,9 @@ import java.io.OutputStream;
 import java.util.Set;
 import java.util.UUID;
 
+import com.jjoe64.graphview.GraphView;
+import com.jjoe64.graphview.series.DataPoint;
+import com.jjoe64.graphview.series.LineGraphSeries;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -50,6 +53,7 @@ public class FragmentMain extends Fragment {
     int waitCounter = 0;
 
 
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -69,7 +73,22 @@ public class FragmentMain extends Fragment {
 
 
         //onClickStart();
+        GraphView graph = (GraphView) view1.findViewById(R.id.graph);
+        //String myBpData = receivedBP.substring(1,receivedBP.length()-1);
+        //String [] myBpData2 = myBpData.split(",");
 
+         final LineGraphSeries<DataPoint> series = new LineGraphSeries<>(new DataPoint[]{
+
+                new DataPoint(0, 1),
+                new DataPoint(1, 5),
+                new DataPoint(2, 3),
+                new DataPoint(3, 2),
+                new DataPoint(4, 6)
+        });
+       /* for (int i=0; i<myBpData2.length; i++){
+         series.appendData(new DataPoint(i,Integer.parseInt(myBpData2[i])), true, 40);
+        }*/
+        graph.addSeries(series);
         /*bluetooth methods here*/
         //setUiEnabled(false);
 
