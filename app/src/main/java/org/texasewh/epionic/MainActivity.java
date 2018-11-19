@@ -114,9 +114,9 @@ public class MainActivity extends AppCompatActivity {
       //  fragmentMain.setArguments(mBundle);
 
 
-
+ // THIS IS WHERE THE LINE IS
         //Calls begins data transfer on start up
-        onClickStart();
+//        onClickStart();
 
         /* Data transfer initialized on start up does appear to be causing delay to launch time
         I tried to solve this by adding back in the button like before however there is a slight issue
