@@ -13,6 +13,7 @@ the app begins.
 to sleep. This leads me to believe it's a combination of the continual feed of bluetooth in conjunction with my redrawing the fragment
 over and over again.
 
+-Program doesn't crash as a result of the Bluetooth input being changed, etc: I can even reset the Bluetooth module mid-operation with no error.
 
 Next steps:
 
