@@ -4,6 +4,7 @@ Code with data transfer from activity->fragment works here, with a few problems
 -Bugs associated with moving from one fragment to another -- probably the result of my continual redrawing of the fragment on every iteration
 
 -It might be possible that "MainFragVis" is true by the pressing of a button but not true in terms of it having been created now
+
 -Program crash upon many times when it starts, probably due to receiving lots of data and continually recreating/uncreating a fragment;
 solution to this problem is to have a button to start data transfer to avoid a big influx of data and fragment creation / re-creation when
 the app begins.
