@@ -48,7 +48,10 @@ public class FragmentMain extends Fragment {
     private Button btnStringA;
     //String holder = "";
     int waitCounter = 0;
-
+   String newDataInput="nothing rn";
+   String receivedPO = "nothing rn";
+   String receivedBP = "nothing rn";
+   String receivedTP = "nothing rn";
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -56,11 +59,14 @@ public class FragmentMain extends Fragment {
         // Inflate the layout for this fragment
         View view1 = inflater.inflate(R.layout.fragment_fragment_main2, container, false);
         // Change to fragment_fragment_main2 for better UI on tablet
-        String newDataInput = getArguments().getString("dataInput");
-        String receivedPO = getArguments().getString("POString");
-        String receivedBP = getArguments().getString("BPString");
-        String receivedTP = getArguments().getString("TPString");
+        Bundle arguments = getArguments();
+        if (arguments != null) {
+             newDataInput = getArguments().getString("dataInput");
 
+            receivedPO = getArguments().getString("POString");
+            receivedBP = getArguments().getString("BPString");
+            receivedTP = getArguments().getString("TPString");
+        }
 
        // String strtext = getArguments().getString("edttext");
         status = view1.findViewById(R.id.statusmessage);

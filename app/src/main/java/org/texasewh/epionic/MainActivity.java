@@ -266,43 +266,25 @@ public class MainActivity extends AppCompatActivity {
                                         mBundle.putString("TPString", currentTP);
                                         mBundle.putString("BPString", currentBP);
                                         fragmentMain.setArguments(mBundle);
-                                    /*    if (MainFragVis) {
-                                            dataListParser = myParser.displayParsedData();
+                                        if (/*MainFragVis*/ true) {
+                                           dataListParser = myParser.displayParsedData();
                                             displayData();
-                                        }*/
-
-                                        if (MainFragVis) {
-                                            dataListParser = myParser.displayParsedData();
-                                           displayData();
                                         }
+
                                     }
                                     else {
                                         mBundle.putString("dataInput", "");
                                         fragmentMain.setArguments(mBundle);
                                     }
 
-                                   /* TextView textViewO = findViewById(R.id.o_changing);
-                                    textViewO.setText("Oxygen Level:" + currentPO);
-                                    TextView textViewTP = findViewById(R.id.t_changing);
-                                    textViewTP.setText("Temperature: " + currentTP);
-                                    TextView textViewBP = findViewById(R.id.bp_changing);
-                                    textViewBP.setText("Blood Pressure: " + currentBP);*/
 
-                                    //TextView textViewBP = findViewById(R.id.bp_changing);
-                                    //TextView textViewTP = findViewById(R.id.t_changing);
-                                    //TextView textViewO = findViewById(R.id.o_changing);
-                                    /*if (MainFragVis) {
-                                        textViewBP.setText("Blood Pressure: " + currentBP);
-                                        textViewTP.setText("Temperature: "+currentTP);
-                                        textViewO.setText("Oxygen Level: "+currentPO);
-                                    }*/
                                     mBundle.putString("POString", currentPO);
                                     mBundle.putString("TPString", currentTP);
                                     mBundle.putString("BPString", currentBP);
                                    FragmentTransaction fragmentTransaction1 = getSupportFragmentManager().beginTransaction();
                                     fragmentTransaction1.replace(R.id.fram, fragmentMain, "Fragment Name"); //fram is layout id in activity_main.xml
                                     fragmentTransaction1.commit();
-                                    MainFragVis = true;
+                                   // MainFragVis = true;
 
 
 
