@@ -48,6 +48,8 @@ public class MainActivity extends AppCompatActivity {
     private String currentPO="0";
     private String currentTP="0";
 
+
+
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
 
@@ -103,6 +105,8 @@ public class MainActivity extends AppCompatActivity {
         mBundle.putString("POString", currentPO);
         mBundle.putString("TPString", currentTP);
         mBundle.putString("BPString", currentBP);
+        AwesomeLibMain.getInstance().init();
+        getLifecycle().addObserver(AwesomeLibMain.getInstance());
       //  ArrayList NikhilArray = new ArrayList<String>();
        // NikhilArray.add("This is NikhilArray :)");
        // mBundle.putParcelable("myObject", NikhilArray );
@@ -141,6 +145,12 @@ public class MainActivity extends AppCompatActivity {
 //        });
 
 
+
+    }
+    protected void onDestroy(){
+        super.onDestroy();
+        AwesomeLibMain.getInstance().cleanup();
+        getLifecycle().removeObserver(AwesomeLibMain.getInstance());
     }
 
 
