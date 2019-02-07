@@ -257,35 +257,36 @@ public class MainActivity extends AppCompatActivity {
                             handler.post(new Runnable() {
                                 public void run() {
 //
-                                    fragmentMain = new FragmentMain();
-                                    if (string.length() == 9) {
-                                        String[] dataInput = string.split("#");
-                                        dataParser myParser = new dataParser(dataInput[0], dataInput[1].split(","));
-                                        mBundle.putString("dataInput", string);
+                                    if (MainFragVis) {
+                                        fragmentMain = new FragmentMain();
+
+                                        if (string.length() == 9) {
+                                            String[] dataInput = string.split("#");
+                                            dataParser myParser = new dataParser(dataInput[0], dataInput[1].split(","));
+                                            mBundle.putString("dataInput", string);
+                                            mBundle.putString("POString", currentPO);
+                                            mBundle.putString("TPString", currentTP);
+                                            mBundle.putString("BPString", currentBP);
+                                            fragmentMain.setArguments(mBundle);
+                                            if (MainFragVis) {
+                                                dataListParser = myParser.displayParsedData();
+                                                displayData();
+                                            }
+
+                                        } else {
+                                            mBundle.putString("dataInput", "");
+                                            fragmentMain.setArguments(mBundle);
+                                        }
+
+
                                         mBundle.putString("POString", currentPO);
                                         mBundle.putString("TPString", currentTP);
                                         mBundle.putString("BPString", currentBP);
-                                        fragmentMain.setArguments(mBundle);
-                                        if (/*MainFragVis*/ true) {
-                                           dataListParser = myParser.displayParsedData();
-                                            displayData();
-                                        }
-
+                                        FragmentTransaction fragmentTransaction1 = getSupportFragmentManager().beginTransaction();
+                                        fragmentTransaction1.replace(R.id.fram, fragmentMain, "Fragment Name"); //fram is layout id in activity_main.xml
+                                        fragmentTransaction1.commit();
+                                        // MainFragVis = true;
                                     }
-                                    else {
-                                        mBundle.putString("dataInput", "");
-                                        fragmentMain.setArguments(mBundle);
-                                    }
-
-
-                                    mBundle.putString("POString", currentPO);
-                                    mBundle.putString("TPString", currentTP);
-                                    mBundle.putString("BPString", currentBP);
-                                   FragmentTransaction fragmentTransaction1 = getSupportFragmentManager().beginTransaction();
-                                    fragmentTransaction1.replace(R.id.fram, fragmentMain, "Fragment Name"); //fram is layout id in activity_main.xml
-                                    fragmentTransaction1.commit();
-                                   // MainFragVis = true;
-
 
 
                                 }
