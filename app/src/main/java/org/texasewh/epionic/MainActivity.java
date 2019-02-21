@@ -1,5 +1,6 @@
 package org.texasewh.epionic;
 
+import android.app.Activity;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothSocket;
@@ -215,27 +216,21 @@ public class MainActivity extends AppCompatActivity {
 
         }
     }
-    void beginListenForData()
-    {
+    void beginListenForData() {
         //status.append("start beginListen method");
         final Handler handler = new Handler();
         stopThread = false;
         buffer = new byte[1024];
 
-        Thread thread  = new Thread(new Runnable()
-        {
-            public void run()
-            {
-                while(!Thread.currentThread().isInterrupted() && !stopThread)
-                {
-                    try
-                    {
+        Thread thread = new Thread(new Runnable() {
+            public void run() {
+                while (!Thread.currentThread().isInterrupted() && !stopThread) {
+                    try {
                         int byteCount = inputStream.available();
-                        if(byteCount > 0)
-                        {
+                        if (byteCount > 0) {
                             byte[] rawBytes = new byte[byteCount];
                             inputStream.read(rawBytes);
-                            final String string=new String(rawBytes,"UTF-8");
+                            final String string = new String(rawBytes, "UTF-8");
 
                             handler.post(new Runnable() {
                                 public void run() {
@@ -247,7 +242,7 @@ public class MainActivity extends AppCompatActivity {
                                         if (MainFragVis) {
                                             TextView testView = findViewById(R.id.bp_changing);
                                             dataListParser = myParser.displayParsedData();
-                                            displayDataInTextView(testView,dataListParser);
+                                            displayDataInTextView(testView, dataListParser);
                                             //FragmentMain.setText("hello");
 
                                         }
@@ -258,9 +253,7 @@ public class MainActivity extends AppCompatActivity {
                             });
 
                         }
-                    }
-                    catch (IOException ex)
-                    {
+                    } catch (IOException ex) {
                         stopThread = true;
                     }
                 }
@@ -270,16 +263,19 @@ public class MainActivity extends AppCompatActivity {
         thread.start();
     }
 
-private void displayDataInTextView(TextView textView, ArrayList arrayList){
-        textView.setText("");
-        textView.setText("Blood Pressure: ");
-    for (int i = 0; i < arrayList.size(); i++) {
-        textView.append((CharSequence) arrayList.get(i));
-        if (i < arrayList.size() - 1) textView.append(", ");
+    private void displayDataInTextView(TextView textView, ArrayList arrayList){
+            textView.setText("");
+            textView.setText("Blood Pressure: ");
+        for (int i = 0; i < arrayList.size(); i++) {
+            textView.append((CharSequence) arrayList.get(i));
+            if (i < arrayList.size() - 1) textView.append(", ");
+        }
+
     }
 
-}
+    void onAttach(Activity activity) {
 
+    }
 }
 
 
