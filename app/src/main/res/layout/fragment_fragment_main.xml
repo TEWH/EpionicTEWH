@@ -42,44 +42,44 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-            <Button
-                android:id="@+id/bp_button"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_alignParentBottom="true"
-                android:layout_alignStart="@+id/t_button"
-                android:layout_marginRight="5dp"
-                android:layout_weight="1"
-                android:background="@drawable/rounded_button1"
-                android:text="Blood Pressure"
-                android:textColor="#FFFAFAFA"
-                android:textSize="11sp" />
+            <!--<Button-->
+                <!--android:id="@+id/bp_button"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="50dp"-->
+                <!--android:layout_alignParentBottom="true"-->
+                <!--android:layout_alignStart="@+id/t_button"-->
+                <!--android:layout_marginRight="5dp"-->
+                <!--android:layout_weight="1"-->
+                <!--android:background="@drawable/rounded_button1"-->
+                <!--android:text="Blood Pressure"-->
+                <!--android:textColor="#FFFAFAFA"-->
+                <!--android:textSize="11sp" />-->
 
-            <Button
-                android:id="@+id/o_button"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_above="@+id/t_button"
-                android:layout_alignStart="@+id/t_button"
-                android:layout_marginRight="5dp"
-                android:layout_weight="1"
-                android:background="@drawable/rounded_button1"
-                android:text="Oxygen Level"
-                android:textColor="#FFFAFAFA"
-                android:textSize="11sp" />
+            <!--<Button-->
+                <!--android:id="@+id/o_button"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="50dp"-->
+                <!--android:layout_above="@+id/t_button"-->
+                <!--android:layout_alignStart="@+id/t_button"-->
+                <!--android:layout_marginRight="5dp"-->
+                <!--android:layout_weight="1"-->
+                <!--android:background="@drawable/rounded_button1"-->
+                <!--android:text="Oxygen Level"-->
+                <!--android:textColor="#FFFAFAFA"-->
+                <!--android:textSize="11sp" />-->
 
-            <Button
-                android:id="@+id/t_button"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_alignParentBottom="true"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:layout_weight="1"
-                android:background="@drawable/rounded_button1"
-                android:text="Temperature"
-                android:textColor="#FFFAFAFA"
-                android:textSize="11sp" />
+            <!--<Button-->
+                <!--android:id="@+id/t_button"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="50dp"-->
+                <!--android:layout_alignParentBottom="true"-->
+                <!--android:layout_alignParentLeft="true"-->
+                <!--android:layout_alignParentStart="true"-->
+                <!--android:layout_weight="1"-->
+                <!--android:background="@drawable/rounded_button1"-->
+                <!--android:text="Temperature"-->
+                <!--android:textColor="#FFFAFAFA"-->
+                <!--android:textSize="11sp" />-->
 
         </LinearLayout>
 
@@ -114,6 +114,12 @@
             android:layout_marginTop="30dp"
             android:text="PulseOx:"
             android:textSize="20sp" />
+
+        <Button
+            android:id="@+id/btn_Notes"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Button" />
 
         <LinearLayout
             android:layout_width="match_parent"

@@ -52,12 +52,13 @@ public class FragmentMain extends Fragment {
     String receivedPO = "nothing rn";
     String receivedBP = "nothing rn";
     String receivedTP = "nothing rn";
+    Button notesBtn;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view1 = inflater.inflate(R.layout.fragment_fragment_main2, container, false);
+        View view1 = inflater.inflate(R.layout.fragment_fragment_main, container, false);
         // Change to fragment_fragment_main2 for better UI on tablet
         Bundle arguments = getArguments();
         if (arguments != null) {
@@ -107,6 +108,16 @@ public class FragmentMain extends Fragment {
                 //activity.onClickStart();
             }
         });
+
+        notesBtn = view1.findViewById(R.id.btn_Notes);
+        notesBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), NotesActivity.class);
+                startActivity(intent);
+            }
+        });
+
         return view1;
     }
 }
