@@ -166,9 +166,15 @@ public class FragmentMain extends Fragment {
 
     @Override
     public void onPause() {
-        mHandler.removeCallbacks(mTimer1);
-        mHandler.removeCallbacks(mTimer2);
-        super.onPause();
+        // graph only works when arduino doesn't send data
+    //        int delay = 1000000000;
+    //
+    //        while (delay > 0) {
+    //            delay--;
+    //
+            mHandler.removeCallbacks(mTimer1);
+            mHandler.removeCallbacks(mTimer2);
+            super.onPause();
     }
 
     private DataPoint[] generateData() {
