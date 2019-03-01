@@ -201,234 +201,234 @@ public class MainActivity extends AppCompatActivity {
          mBundle.putString("dataInput", "");
          fragmentMain.setArguments(mBundle);
 
-        //Calls begins data transfer on start up
-        //onClickStart();
+       // Calls begins data transfer on start up
+        onClickStart();
 
 
     }
 
 
-//    public boolean BTinit()
-//    {
-//        // status.append("entered BTinit");
-//        boolean found=false;
-//        BluetoothAdapter bluetoothAdapter=BluetoothAdapter.getDefaultAdapter();
-//        //  status.append("test");
-//        if (bluetoothAdapter == null) {
-//            //Toast.makeText(getApplicationContext(),"Device doesnt Support Bluetooth",Toast.LENGTH_SHORT).show();
-//            // status.append("bluetooth not supported");
-//        }
-//        if(!bluetoothAdapter.isEnabled())
-//        {
-//            //status.append("bluetooth adapter not enabled");
-//            Intent enableAdapter = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
-//            startActivityForResult(enableAdapter, 0);
-//            try {
-//                Thread.sleep(1000);
-//            } catch (InterruptedException e) {
-//                e.printStackTrace();
-//            }
-//        }
-//        Set<BluetoothDevice> bondedDevices = bluetoothAdapter.getBondedDevices();
-//        if(bondedDevices.isEmpty())
-//        {
-//            //Toast.makeText(getApplicationContext(),"Please Pair the Device first",Toast.LENGTH_SHORT).show();
-//            //status.append("pair device");
-//
-//        }
-//        else
-//        {
-//            for (BluetoothDevice iterator : bondedDevices)
-//            {
-//                if(iterator.getAddress().equals(DEVICE_ADDRESS))
-//                {
-//                    // status.append("checked address");
-//                    device=iterator;
-//                    found=true;
-//                    break;
-//                }
-//            }
-//        }
-//        return found;
-//    }
+    public boolean BTinit()
+    {
+        // status.append("entered BTinit");
+        boolean found=false;
+        BluetoothAdapter bluetoothAdapter=BluetoothAdapter.getDefaultAdapter();
+        //  status.append("test");
+        if (bluetoothAdapter == null) {
+            //Toast.makeText(getApplicationContext(),"Device doesnt Support Bluetooth",Toast.LENGTH_SHORT).show();
+            // status.append("bluetooth not supported");
+        }
+        if(!bluetoothAdapter.isEnabled())
+        {
+            //status.append("bluetooth adapter not enabled");
+            Intent enableAdapter = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
+            startActivityForResult(enableAdapter, 0);
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+        Set<BluetoothDevice> bondedDevices = bluetoothAdapter.getBondedDevices();
+        if(bondedDevices.isEmpty())
+        {
+            //Toast.makeText(getApplicationContext(),"Please Pair the Device first",Toast.LENGTH_SHORT).show();
+            //status.append("pair device");
 
-//    public boolean BTconnect()
-//    {
-//        // status.append(" entered bTconnect");
-//        boolean connected=true;
-//        try {
-//            socket = device.createRfcommSocketToServiceRecord(PORT_UUID);
-//            socket.connect();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//            connected=false;
-//        }
-//        if(connected)
-//        {
-//            try {
-//                outputStream=socket.getOutputStream();
-//            } catch (IOException e) {
-//                e.printStackTrace();
-//            }
-//            try {
-//                inputStream=socket.getInputStream();
-//            } catch (IOException e) {
-//                e.printStackTrace();
-//            }
+        }
+        else
+        {
+            for (BluetoothDevice iterator : bondedDevices)
+            {
+                if(iterator.getAddress().equals(DEVICE_ADDRESS))
+                {
+                    // status.append("checked address");
+                    device=iterator;
+                    found=true;
+                    break;
+                }
+            }
+        }
+        return found;
+    }
+
+    public boolean BTconnect()
+    {
+        // status.append(" entered bTconnect");
+        boolean connected=true;
+        try {
+            socket = device.createRfcommSocketToServiceRecord(PORT_UUID);
+            socket.connect();
+        } catch (IOException e) {
+            e.printStackTrace();
+            connected=false;
+        }
+        if(connected)
+        {
+            try {
+                outputStream=socket.getOutputStream();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            try {
+                inputStream=socket.getInputStream();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+        }
+
+
+        return connected;
+    }
+    public void onClickStart() {
+        //status.append("clicked on start");
+        if(BTinit())
+        {
+            if(BTconnect())
+            {
+                //TextView status = findViewById(R.id.statusmessage);
+                // setUiEnabled(true);
+                deviceConnected=true;
+                beginListenForData();
+                // status.append("\nConnection Opened!\n");
+            }
+
+        }
+    }
+    void beginListenForData()
+    {
+        //status.append("start beginListen method");
+        final Handler handler = new Handler();
+        stopThread = false;
+        buffer = new byte[1024];
+
+        Thread thread  = new Thread(new Runnable()
+        {
+            public void run()
+            {
+                while(!Thread.currentThread().isInterrupted() && !stopThread)
+                {
+                    try
+                    {
+                        int byteCount = inputStream.available();
+                        if(byteCount > 0)
+                        {
+                            byte[] rawBytes = new byte[byteCount];
+                            inputStream.read(rawBytes);
+                            final String string=new String(rawBytes,"UTF-8");
+
+                            handler.post(new Runnable() {
+                                public void run() {
 //
-//        }
-//
-//
-//        return connected;
-//    }
-//    public void onClickStart() {
-//        //status.append("clicked on start");
-//        if(BTinit())
-//        {
-//            if(BTconnect())
-//            {
-//                //TextView status = findViewById(R.id.statusmessage);
-//                // setUiEnabled(true);
-//                deviceConnected=true;
-//                beginListenForData();
-//                // status.append("\nConnection Opened!\n");
-//            }
-//
-//        }
-//    }
-//    void beginListenForData()
-//    {
-//        //status.append("start beginListen method");
-//        final Handler handler = new Handler();
-//        stopThread = false;
-//        buffer = new byte[1024];
-//
-//        Thread thread  = new Thread(new Runnable()
-//        {
-//            public void run()
-//            {
-//                while(!Thread.currentThread().isInterrupted() && !stopThread)
-//                {
-//                    try
-//                    {
-//                        int byteCount = inputStream.available();
-//                        if(byteCount > 0)
-//                        {
-//                            byte[] rawBytes = new byte[byteCount];
-//                            inputStream.read(rawBytes);
-//                            final String string=new String(rawBytes,"UTF-8");
-//
-//                            handler.post(new Runnable() {
-//                                public void run() {
-////
-//                                    if (MainFragVis) {
-//                                        fragmentMain = new FragmentMain();
-//
-//                                        if (string.length() == 9) {
-//                                            String[] dataInput = string.split("#");
-//                                            dataParser myParser = new dataParser(dataInput[0], dataInput[1].split(","));
-//                                            mBundle.putString("dataInput", string);
-//                                            mBundle.putString("POString", currentPO);
-//                                            mBundle.putString("TPString", currentTP);
-//                                            mBundle.putString("BPString", currentBP);
-//                                            fragmentMain.setArguments(mBundle);
-//                                            if (MainFragVis) {
-//                                                dataListParser = myParser.displayParsedData();
-//                                                displayData();
-//                                            }
-//
-//                                        } else {
-//                                            mBundle.putString("dataInput", "");
-//                                            fragmentMain.setArguments(mBundle);
-//                                        }
-//
-//
-//                                        mBundle.putString("POString", currentPO);
-//                                        mBundle.putString("TPString", currentTP);
-//                                        mBundle.putString("BPString", currentBP);
-//                                        FragmentTransaction fragmentTransaction1 = getSupportFragmentManager().beginTransaction();
-//                                        fragmentTransaction1.replace(R.id.fram, fragmentMain, "Fragment Name"); //fram is layout id in activity_main.xml
-//                                        fragmentTransaction1.commit();
-//                                        // MainFragVis = true;
-//                                    }
-//
-//
-//                                }
-//
-//                            });
-//
-//                        }
-//                    }
-//                    catch (IOException ex)
-//                    {
-//                        stopThread = true;
-//                    }
-//                }
-//            }
-//        });
-//
-//        thread.start();
-//    }
-//
-//    // Need to fix bug of elements 0 and 1 displaying twice
-//    private void displayDataInTextView(TextView textView, ArrayList arrayList){
-//        textView.append("");
-//        //textView.setText("Blood Pressure: ");
-//        for (int i = 0; i < arrayList.size(); i++) {
-//            textView.append( (String) arrayList.get(i) );
-//            if (i < arrayList.size() - 1) textView.append(", ");
-//        }
-//
-//    }
-//
-//    private void displayData() {
-//
-//        String label = dataListParser.get(0).toString();
-//        dataListParser.remove(0); // Now the first element won't be the same
-//     /*   switch  (label) {
-//            case "1":
-//                String myStorer="";
-//               // for (String i: dataListParser){ myStorer = myStorer+ i; }
-//               // currentBP = myStorer;
-//                break;
-//            case "2":
-//                String myStorer1="";
-//               // for (String i: dataListParser){ myStorer1 = myStorer1+ i; }
-//             //   currentTP = myStorer1;
-//                break;
-//            case "3":
-//                String myStorer2="";
-//                //for (String i: dataListParser){ myStorer2 = myStorer2+ i; }
-//               // currentPO = myStorer2;
-//                break;
-//            }*/
-//
-//        TextView textViewBP = findViewById(R.id.bp_changing);
-//        TextView textViewTP = findViewById(R.id.t_changing);
-//        TextView textViewO = findViewById(R.id.o_changing);
-//
-//        switch  (label) {
-//            case "1":
-//                currentBP=dataListParser.toString();
-//                //  textViewBP.setText("Blood Pressure: " + currentBP);
-//                //  textViewTP.setText("Temperature: "+currentTP);
-//                //  textViewO.setText("Oxygen Level: "+currentPO);
-//                break;
-//            case "2":
-//                currentTP=dataListParser.toString();
-//                //  textViewBP.setText("Blood Pressure: " + currentBP);
-//                //  textViewTP.setText("Temperature: "+currentTP);
-//                //  textViewO.setText("Oxygen Level: "+currentPO);
-//                break;
-//            case "3":
-//                currentPO=dataListParser.toString();
-//                //  textViewBP.setText("Blood Pressure: " + currentBP);
-//                //  textViewTP.setText("Temperature: "+currentTP);
-//                //  textViewO.setText("Oxygen Level: "+currentPO);
-//                break;
-//        }
-//
-//    }
-//
-//
+                                    if (MainFragVis) {
+                                        fragmentMain = new FragmentMain();
+
+                                        if (string.length() == 9) {
+                                            String[] dataInput = string.split("#");
+                                            dataParser myParser = new dataParser(dataInput[0], dataInput[1].split(","));
+                                            mBundle.putString("dataInput", string);
+                                            mBundle.putString("POString", currentPO);
+                                            mBundle.putString("TPString", currentTP);
+                                            mBundle.putString("BPString", currentBP);
+                                            fragmentMain.setArguments(mBundle);
+                                            if (MainFragVis) {
+                                                dataListParser = myParser.displayParsedData();
+                                                displayData();
+                                            }
+
+                                        } else {
+                                            mBundle.putString("dataInput", "");
+                                            fragmentMain.setArguments(mBundle);
+                                        }
+
+
+                                        mBundle.putString("POString", currentPO);
+                                        mBundle.putString("TPString", currentTP);
+                                        mBundle.putString("BPString", currentBP);
+                                        FragmentTransaction fragmentTransaction1 = getSupportFragmentManager().beginTransaction();
+                                        fragmentTransaction1.replace(R.id.fram, fragmentMain, "Fragment Name"); //fram is layout id in activity_main.xml
+                                        fragmentTransaction1.commit();
+                                        // MainFragVis = true;
+                                    }
+
+
+                                }
+
+                            });
+
+                        }
+                    }
+                    catch (IOException ex)
+                    {
+                        stopThread = true;
+                    }
+                }
+            }
+        });
+
+        thread.start();
+    }
+
+    // Need to fix bug of elements 0 and 1 displaying twice
+    private void displayDataInTextView(TextView textView, ArrayList arrayList){
+        textView.append("");
+        //textView.setText("Blood Pressure: ");
+        for (int i = 0; i < arrayList.size(); i++) {
+            textView.append( (String) arrayList.get(i) );
+            if (i < arrayList.size() - 1) textView.append(", ");
+        }
+
+    }
+
+    private void displayData() {
+
+        String label = dataListParser.get(0).toString();
+        dataListParser.remove(0); // Now the first element won't be the same
+     /*   switch  (label) {
+            case "1":
+                String myStorer="";
+               // for (String i: dataListParser){ myStorer = myStorer+ i; }
+               // currentBP = myStorer;
+                break;
+            case "2":
+                String myStorer1="";
+               // for (String i: dataListParser){ myStorer1 = myStorer1+ i; }
+             //   currentTP = myStorer1;
+                break;
+            case "3":
+                String myStorer2="";
+                //for (String i: dataListParser){ myStorer2 = myStorer2+ i; }
+               // currentPO = myStorer2;
+                break;
+            }*/
+
+        TextView textViewBP = findViewById(R.id.bp_changing);
+        TextView textViewTP = findViewById(R.id.t_changing);
+        TextView textViewO = findViewById(R.id.o_changing);
+
+        switch  (label) {
+            case "1":
+                currentBP=dataListParser.toString();
+                //  textViewBP.setText("Blood Pressure: " + currentBP);
+                //  textViewTP.setText("Temperature: "+currentTP);
+                //  textViewO.setText("Oxygen Level: "+currentPO);
+                break;
+            case "2":
+                currentTP=dataListParser.toString();
+                //  textViewBP.setText("Blood Pressure: " + currentBP);
+                //  textViewTP.setText("Temperature: "+currentTP);
+                //  textViewO.setText("Oxygen Level: "+currentPO);
+                break;
+            case "3":
+                currentPO=dataListParser.toString();
+                //  textViewBP.setText("Blood Pressure: " + currentBP);
+                //  textViewTP.setText("Temperature: "+currentTP);
+                //  textViewO.setText("Oxygen Level: "+currentPO);
+                break;
+        }
+
+    }
+
+
 }
