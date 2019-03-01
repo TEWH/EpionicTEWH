@@ -17,8 +17,12 @@ import android.widget.TextView;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.Random;
 import java.util.Set;
 import java.util.UUID;
+import com.jjoe64.graphview.*;
+import com.jjoe64.graphview.series.DataPoint;
+import com.jjoe64.graphview.series.LineGraphSeries;
 
 
 /**
@@ -53,6 +57,14 @@ public class FragmentMain extends Fragment {
    String receivedBP = "nothing rn";
    String receivedTP = "nothing rn";
 
+    final Handler mHandler = new Handler();
+    Runnable mTimer1;
+    Runnable mTimer2;
+    LineGraphSeries<DataPoint> mSeries1;
+    LineGraphSeries<DataPoint> mSeries2;
+    double graph2LastXValue = 5d;
+
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -66,11 +78,13 @@ public class FragmentMain extends Fragment {
             receivedPO = getArguments().getString("POString");
             receivedBP = getArguments().getString("BPString");
             receivedTP = getArguments().getString("TPString");
+            status = view1.findViewById(R.id.statusmessage);
+            //status.setText(newDataInput);
         }
 
+
        // String strtext = getArguments().getString("edttext");
-        status = view1.findViewById(R.id.statusmessage);
-        status.setText(newDataInput);
+
         //return inflater.inflate(R.layout.fragment_fragment_main, container, false);
 
 
@@ -107,7 +121,79 @@ public class FragmentMain extends Fragment {
                 //activity.onClickStart();
             }
         });
+
+        GraphView graph2 = (GraphView) view1.findViewById(R.id.graph);
+        mSeries2 = new LineGraphSeries<>();
+        graph2.addSeries(mSeries2);
+        graph2.getViewport().setXAxisBoundsManual(true);
+        graph2.getViewport().setMinX(0);
+        graph2.getViewport().setMaxX(40);
+        makeGraph();
+
         return view1;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+//        mTimer1 = new Runnable() {
+//            @Override
+//            public void run() {
+//                //mSeries1.resetData(generateData());
+//                mHandler.postDelayed(this, 300);
+//            }
+//        };
+//        mHandler.postDelayed(mTimer1, 300);
+
+//        mTimer2 = new Runnable() {
+//            @Override
+//            public void run() {
+//                graph2LastXValue += 1d;
+//                mSeries2.appendData(new DataPoint(graph2LastXValue, getRandom()), true, 40);
+//                mHandler.postDelayed(this, 200);
+//            }
+//        };
+//        mHandler.postDelayed(mTimer2, 1000);
+        makeGraph();
+    }
+
+    @Override
+    public void onPause() {
+        mHandler.removeCallbacks(mTimer1);
+        mHandler.removeCallbacks(mTimer2);
+        super.onPause();
+    }
+
+    private DataPoint[] generateData() {
+        int count = 30;
+        DataPoint[] values = new DataPoint[count];
+        for (int i=0; i<count; i++) {
+            double x = i;
+            double f = mRand.nextDouble()*0.15+0.3;
+            double y = Math.sin(i*f+2) + mRand.nextDouble()*0.3;
+            DataPoint v = new DataPoint(x, y);
+            values[i] = v;
+        }
+        return values;
+    }
+
+    double mLastRandom = 2;
+    Random mRand = new Random();
+    private double getRandom() {
+        return mLastRandom += mRand.nextDouble()*0.5 - 0.25;
+    }
+
+    public void makeGraph()
+    {
+        mTimer2 = new Runnable() {
+            @Override
+            public void run() {
+                graph2LastXValue += 1d;
+                mSeries2.appendData(new DataPoint(graph2LastXValue, getRandom()), true, 40);
+                mHandler.postDelayed(this, 200);
+            }
+        };
+        mHandler.postDelayed(mTimer2, 1000);
     }
 }
 
