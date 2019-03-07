@@ -149,5 +149,4 @@ class dataParser {
         }
         return data_List;
     }
-
 }

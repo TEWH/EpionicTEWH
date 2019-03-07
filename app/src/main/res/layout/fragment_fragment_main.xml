@@ -10,83 +10,23 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginRight="10dp"
+        android:layout_alignParentTop="true"
         android:layout_marginLeft="10dp"
+        android:layout_marginTop="0dp"
+        android:layout_marginRight="10dp"
+        android:gravity="bottom"
         android:orientation="vertical">
 
-        <Button
-            android:id="@+id/alerts"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/editText2"
-            android:layout_toEndOf="@+id/navigation"
-            android:layout_marginBottom="10dp"
-            android:layout_marginTop="5dp"
-            android:background="@drawable/rounded_button2"
-            android:text="Alerts"
-            android:textColor="#FFFAFAFA" />
-
-        <com.jjoe64.graphview.GraphView
-            android:layout_width="match_parent"
-            android:layout_height="200dip"
-            android:id="@+id/graph" />
-
         <!--<ImageView-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="198dp"-->
-            <!--android:layout_above="@+id/t_button"-->
-            <!--android:layout_alignParentLeft="true"-->
-            <!--android:layout_alignParentStart="true"-->
-            <!--android:layout_marginBottom="10dp"-->
-            <!--android:layout_marginLeft="0dp"-->
-            <!--android:layout_marginStart="0dp"-->
-            <!--android:src="@drawable/epionic_pic" />-->
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <!--<Button-->
-                <!--android:id="@+id/bp_button"-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="50dp"-->
-                <!--android:layout_alignParentBottom="true"-->
-                <!--android:layout_alignStart="@+id/t_button"-->
-                <!--android:layout_marginRight="5dp"-->
-                <!--android:layout_weight="1"-->
-                <!--android:background="@drawable/rounded_button1"-->
-                <!--android:text="Blood Pressure"-->
-                <!--android:textColor="#FFFAFAFA"-->
-                <!--android:textSize="11sp" />-->
-
-            <!--<Button-->
-                <!--android:id="@+id/o_button"-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="50dp"-->
-                <!--android:layout_above="@+id/t_button"-->
-                <!--android:layout_alignStart="@+id/t_button"-->
-                <!--android:layout_marginRight="5dp"-->
-                <!--android:layout_weight="1"-->
-                <!--android:background="@drawable/rounded_button1"-->
-                <!--android:text="Oxygen Level"-->
-                <!--android:textColor="#FFFAFAFA"-->
-                <!--android:textSize="11sp" />-->
-
-            <!--<Button-->
-                <!--android:id="@+id/t_button"-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="50dp"-->
-                <!--android:layout_alignParentBottom="true"-->
-                <!--android:layout_alignParentLeft="true"-->
-                <!--android:layout_alignParentStart="true"-->
-                <!--android:layout_weight="1"-->
-                <!--android:background="@drawable/rounded_button1"-->
-                <!--android:text="Temperature"-->
-                <!--android:textColor="#FFFAFAFA"-->
-                <!--android:textSize="11sp" />-->
-
-        </LinearLayout>
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="198dp"-->
+        <!--android:layout_above="@+id/t_button"-->
+        <!--android:layout_alignParentLeft="true"-->
+        <!--android:layout_alignParentStart="true"-->
+        <!--android:layout_marginBottom="10dp"-->
+        <!--android:layout_marginLeft="0dp"-->
+        <!--android:layout_marginStart="0dp"-->
+        <!--android:src="@drawable/epionic_pic" />-->
 
         <TextView
             android:id="@+id/t_changing"
@@ -100,10 +40,10 @@
             android:id="@+id/bp_changing"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
             android:layout_alignTop="@+id/t_changing"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentBottom="true"
             android:layout_marginTop="20dp"
             android:text="BP: "
             android:textSize="20sp" />
@@ -112,10 +52,10 @@
             android:id="@+id/o_changing"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
             android:layout_alignTop="@+id/bp_changing"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentBottom="true"
             android:layout_marginTop="30dp"
             android:text="PulseOx:"
             android:textSize="20sp" />
@@ -126,9 +66,21 @@
             android:layout_height="wrap_content"
             android:text="Button" />
 
+        <Button
+            android:id="@+id/alerts"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/editText2"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="10dp"
+            android:layout_toEndOf="@+id/navigation"
+            android:background="@drawable/rounded_button2"
+            android:text="Alerts"
+            android:textColor="#FFFAFAFA" />
+
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="horizontal">
 
             <Button

@@ -58,12 +58,13 @@ public class FragmentMain extends Fragment {
     String receivedBP = "nothing rn";
     String receivedTP = "nothing rn";
     Button notesBtn;
-    GraphView graph;
-    LineGraphSeries<DataPoint> mSeries;
-    final Handler mHandler = new Handler();
-    double graph2LastXValue = 5d;
-    Runnable mTimer1;
-    Runnable mTimer2;
+    // Graph initialization
+//    GraphView graph;
+//    LineGraphSeries<DataPoint> mSeries;
+//    final Handler mHandler = new Handler();
+//    double graph2LastXValue = 5d;
+//    Runnable mTimer1;
+//    Runnable mTimer2;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -129,70 +130,72 @@ public class FragmentMain extends Fragment {
             }
         });
 
-        // Code for graph
-        graph = (GraphView) view1.findViewById(R.id.graph);
-        mSeries = new LineGraphSeries<>();
-        if (mSeries != null && graph != null) {
-            graph.addSeries(mSeries);
-            graph.getViewport().setXAxisBoundsManual(true);
-            graph.getViewport().setMinX(0);
-            graph.getViewport().setMaxX(40);
-        }
+//        // Code for graph
+//        graph = (GraphView) view1.findViewById(R.id.graph);
+//        mSeries = new LineGraphSeries<>();
+//        if (mSeries != null && graph != null) {
+//            graph.addSeries(mSeries);
+//            graph.getViewport().setXAxisBoundsManual(true);
+//            graph.getViewport().setMinX(0);
+//            graph.getViewport().setMaxX(40);
+//        }
+//        return view1;
+//    }
+//
+//    @Override
+//    public void onResume() {
+//        super.onResume();
+//        mTimer1 = new Runnable() {
+//            @Override
+//            public void run() {
+//                //mSeries1.resetData(generateData());
+//                mHandler.postDelayed(this, 300);
+//            }
+//        };
+//        mHandler.postDelayed(mTimer1, 300);
+//
+//        mTimer2 = new Runnable() {
+//            @Override
+//            public void run() {
+//                graph2LastXValue += 1d;
+//                mSeries.appendData(new DataPoint(graph2LastXValue, getRandom()), true, 40);
+//                mHandler.postDelayed(this, 200);
+//            }
+//        };
+//        mHandler.postDelayed(mTimer2, 1000);
+//    }
+//
+//    @Override
+//    public void onPause() {
+//        // graph only works when arduino doesn't send data
+//    //        int delay = 1000000000;
+//    //
+//    //        while (delay > 0) {
+//    //            delay--;
+//    //
+//            mHandler.removeCallbacks(mTimer1);
+//            mHandler.removeCallbacks(mTimer2);
+//            super.onPause();
+//    }
+//
+//    private DataPoint[] generateData() {
+//        int count = 30;
+//        DataPoint[] values = new DataPoint[count];
+//        for (int i=0; i<count; i++) {
+//            double x = i;
+//            double f = mRand.nextDouble()*0.15+0.3;
+//            double y = Math.sin(i*f+2) + mRand.nextDouble()*0.3;
+//            DataPoint v = new DataPoint(x, y);
+//            values[i] = v;
+//        }
+//        return values;
+//    }
+//
+//    double mLastRandom = 2;
+//    Random mRand = new Random();
+//    private double getRandom() {
+//        return mLastRandom += mRand.nextDouble()*0.5 - 0.25;
+
         return view1;
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        mTimer1 = new Runnable() {
-            @Override
-            public void run() {
-                //mSeries1.resetData(generateData());
-                mHandler.postDelayed(this, 300);
-            }
-        };
-        mHandler.postDelayed(mTimer1, 300);
-
-        mTimer2 = new Runnable() {
-            @Override
-            public void run() {
-                graph2LastXValue += 1d;
-                mSeries.appendData(new DataPoint(graph2LastXValue, getRandom()), true, 40);
-                mHandler.postDelayed(this, 200);
-            }
-        };
-        mHandler.postDelayed(mTimer2, 1000);
-    }
-
-    @Override
-    public void onPause() {
-        // graph only works when arduino doesn't send data
-    //        int delay = 1000000000;
-    //
-    //        while (delay > 0) {
-    //            delay--;
-    //
-            mHandler.removeCallbacks(mTimer1);
-            mHandler.removeCallbacks(mTimer2);
-            super.onPause();
-    }
-
-    private DataPoint[] generateData() {
-        int count = 30;
-        DataPoint[] values = new DataPoint[count];
-        for (int i=0; i<count; i++) {
-            double x = i;
-            double f = mRand.nextDouble()*0.15+0.3;
-            double y = Math.sin(i*f+2) + mRand.nextDouble()*0.3;
-            DataPoint v = new DataPoint(x, y);
-            values[i] = v;
-        }
-        return values;
-    }
-
-    double mLastRandom = 2;
-    Random mRand = new Random();
-    private double getRandom() {
-        return mLastRandom += mRand.nextDouble()*0.5 - 0.25;
     }
 }

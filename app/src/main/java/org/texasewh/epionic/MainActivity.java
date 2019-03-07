@@ -97,17 +97,24 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.view.GestureDetector;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.ArrayList;
+import java.util.Random;
 import java.util.Set;
 import java.util.UUID;
 import android.app.Fragment;
+
+import com.jjoe64.graphview.GraphView;
+import com.jjoe64.graphview.series.DataPoint;
+import com.jjoe64.graphview.series.LineGraphSeries;
 
 public class MainActivity extends AppCompatActivity {
     private final String DEVICE_ADDRESS="98:D3:71:FD:4C:B6";
@@ -133,6 +140,18 @@ public class MainActivity extends AppCompatActivity {
     private String currentBP="0";
     private String currentPO="0";
     private String currentTP="0";
+    int myGlob=0;
+//    ArrayList <Integer> ourValues = new ArrayList<Integer>(){{
+//        ourValues.add( (Integer) 0);
+//    }};
+
+    // Graph initialization
+    GraphView graph;
+    LineGraphSeries<DataPoint> mSeries;
+    final Handler mHandler = new Handler();
+    double graph2LastXValue = 5d;
+    Runnable mTimer1;
+    Runnable mTimer2;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -204,7 +223,16 @@ public class MainActivity extends AppCompatActivity {
        // Calls begins data transfer on start up
         onClickStart();
 
+        // Graph stuff
+        graph = (GraphView) findViewById(R.id.graph);
+        mSeries = new LineGraphSeries<>();
 
+        if (mSeries != null && graph != null) {
+            graph.addSeries(mSeries);
+            graph.getViewport().setXAxisBoundsManual(true);
+            graph.getViewport().setMinX(0);
+            graph.getViewport().setMaxX(40);
+        }
     }
 
 
@@ -321,6 +349,8 @@ public class MainActivity extends AppCompatActivity {
                             handler.post(new Runnable() {
                                 public void run() {
 //
+                                   myGlob = myGlob+1;
+
                                     if (MainFragVis) {
                                         fragmentMain = new FragmentMain();
 
@@ -331,6 +361,13 @@ public class MainActivity extends AppCompatActivity {
                                             mBundle.putString("POString", currentPO);
                                             mBundle.putString("TPString", currentTP);
                                             mBundle.putString("BPString", currentBP);
+                                            //myGlob = Integer.parseInt(currentPO.substring(1,2));
+
+//                                                    for (String i: dataInput[1].split(",")){
+//                                                        ourValues.add(Integer.parseInt(i));
+//                                                    }
+
+
                                             fragmentMain.setArguments(mBundle);
                                             if (MainFragVis) {
                                                 dataListParser = myParser.displayParsedData();
@@ -428,5 +465,66 @@ public class MainActivity extends AppCompatActivity {
                 break;
         }
 
+    }
+
+    // Code for graph
+    @Override
+    public void onResume() {
+        super.onResume();
+        mTimer1 = new Runnable() {
+            @Override
+            public void run() {
+                //mSeries1.resetData(generateData());
+                mHandler.postDelayed(this, 300);
+            }
+        };
+        mHandler.postDelayed(mTimer1, 300);
+
+
+        mTimer2 = new Runnable() {
+            @Override
+            public void run() {
+                graph2LastXValue += 1d;
+                mSeries.appendData(new DataPoint(graph2LastXValue, myGlob), true, 40);
+//                for (Object i: ourValues) {
+//                    mSeries.appendData(new DataPoint(graph2LastXValue, (Integer) i), true, 40);
+//                    graph2LastXValue += 1d;
+//                }
+                mHandler.postDelayed(this, 200);
+            }
+        };
+        mHandler.postDelayed(mTimer2, 1000);
+    }
+
+    @Override
+    public void onPause() {
+        // graph only works when arduino doesn't send data
+        //        int delay = 1000000000;
+        //
+        //        while (delay > 0) {
+        //            delay--;
+        //
+        mHandler.removeCallbacks(mTimer1);
+        mHandler.removeCallbacks(mTimer2);
+        super.onPause();
+    }
+
+    private DataPoint[] generateData() {
+        int count = 30;
+        DataPoint[] values = new DataPoint[count];
+        for (int i=0; i<count; i++) {
+            double x = i;
+            double f = mRand.nextDouble()*0.15+0.3;
+            double y = Math.sin(i*f+2) + mRand.nextDouble()*0.3;
+            DataPoint v = new DataPoint(x, y);
+            values[i] = v;
+        }
+        return values;
+    }
+
+    double mLastRandom = 2;
+    Random mRand = new Random();
+    private double getRandom() {
+        return mLastRandom += mRand.nextDouble()*0.5 - 0.25;
     }
 }
