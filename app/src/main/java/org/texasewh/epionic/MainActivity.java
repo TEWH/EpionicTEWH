@@ -105,6 +105,7 @@ public class MainActivity extends AppCompatActivity {
         }
     };
     private int x = 0;
+    private String bp = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -294,10 +295,16 @@ public class MainActivity extends AppCompatActivity {
 
                                         switch (dataArray[0]) {
                                             case "BP":
-                                                mBundle.putString("BPString", dataArray[1]);
-                                                // graph test
-                                                mSeries.appendData(new DataPoint(x, Integer.parseInt(dataArray[1])), true, 1000);
-                                                x++;
+                                                if (bp == "") {
+                                                    bp = dataArray[1];
+                                                } else {
+                                                    bp += "/" + dataArray[1];
+                                                    mBundle.putString("BPString", bp);
+                                                    // graph test
+                                                    mSeries.appendData(new DataPoint(x, Integer.parseInt(dataArray[1])), true, 1000);
+                                                    x++;
+                                                    bp = "";
+                                                }
                                                 break;
                                             case "ECG":
                                                 // graph stuff
