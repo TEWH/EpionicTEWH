@@ -36,6 +36,9 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="org.texasewh.epionic.NotesActivity" />
         </activity>
+        <activity android:name=".AdInfoActivity" />
+        <activity android:name=".PatientInfoActivity"/>
+        <activity android:name=".SettingsActivity"/>
     </application>
 
 </manifest>
