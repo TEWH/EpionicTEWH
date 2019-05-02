@@ -522,8 +522,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             startActivity(new Intent(MainActivity.this, AdInfoActivity.class));
 
         }
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        drawer.closeDrawer(GravityCompat.START);
+        //DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        //drawer.closeDrawer(GravityCompat.START);
         return true;
     }
 }
