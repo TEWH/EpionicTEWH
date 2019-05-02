@@ -20,4 +20,14 @@
         android:layout_alignParentEnd="true"
         android:hint="@string/enter_note_here"
         android:inputType="textMultiLine|textCapSentences"/>
+
+    <Button
+        android:id="@+id/button2"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="62dp"
+        android:text="Submit" />
 </RelativeLayout>

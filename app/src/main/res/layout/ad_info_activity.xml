@@ -33,7 +33,7 @@
         android:layout_marginEnd="268dp"
         android:layout_marginRight="268dp"
         android:layout_marginBottom="364dp"
-        android:text="Mission: "
+        android:text="FAQs:"
         android:textSize="24sp"
         android:textStyle="bold|italic"
         app:layout_constraintBottom_toBottomOf="parent"
