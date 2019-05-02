@@ -8,13 +8,10 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-import android.widget.Toolbar;
-
-import org.texasewh.epionic.DBOpenHelper;
-import org.texasewh.epionic.NotesProvider;
-import org.texasewh.epionic.R;
 
 
 public class NotesEditorActivity extends AppCompatActivity {
@@ -66,7 +63,7 @@ public class NotesEditorActivity extends AppCompatActivity {
 
         switch (id) {
             case android.R.id.home:
-                finishEditing();
+              //  finishEditing();
                 break;
         }
 
@@ -82,28 +79,40 @@ public class NotesEditorActivity extends AppCompatActivity {
         finish();
     }
 
-    private void finishEditing() {
-        String newText = editor.getText().toString().trim();
+    public void finishEditing(View view) {
+        Button btn = findViewById(R.id.submit);
+        btn.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v){
+                String newText = editor.getText().toString().trim();
 
-        switch (action) {
-            case Intent.ACTION_INSERT:
-                if (newText.length() == 0) {
-                    setResult(RESULT_CANCELED);
-                } else {
-                    insertNote(newText);
-                }
-                break;
-            case Intent.ACTION_EDIT:
-                if (newText.length() == 0) {
-                    deleteNote();
-                } else if (oldText.equals(newText)) {
-                    setResult(RESULT_CANCELED);
-                } else {
-                    updateNote(newText);
-                }
+                switch (action) {
+                    case Intent.ACTION_INSERT:
+                        if (newText.length() == 0) {
+                            setResult(RESULT_CANCELED);
+                        } else {
+                            insertNote(newText);
+                        }
+                        break;
+                    case Intent.ACTION_EDIT:
+                        if (newText.length() == 0) {
+                            deleteNote();
+                        } else if (oldText.equals(newText)) {
+                            setResult(RESULT_CANCELED);
+                        } else {
+                            updateNote(newText);
+                        }
 
-        }
-        finish();
+                }
+                finish();
+
+
+                Toast.makeText(getBaseContext(), "The note has been added!" , Toast.LENGTH_SHORT ).show();
+
+
+            }
+
+        });
+
     }
 
     private void updateNote(String noteText) {
@@ -121,8 +130,7 @@ public class NotesEditorActivity extends AppCompatActivity {
         setResult(RESULT_OK);
     }
 
-    @Override
-    public void onBackPressed() {
-        finishEditing();
-    }
+   // @Override
+  //  public void onBackPressed() { finishEditing();
+   // }
 }

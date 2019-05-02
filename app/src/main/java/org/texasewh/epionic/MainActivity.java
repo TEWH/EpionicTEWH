@@ -62,7 +62,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private String currentBP="0";
     private String currentPO="0";
     private String currentTP="0";
-    private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
+ /*   private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
 
         @Override
@@ -105,7 +105,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             }
             return false;
         }
-    };
+    };*/
     private int x = 0;
     private String bp = "";
 
@@ -114,8 +114,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
-        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+      //  BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
+       // navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+        NavigationView navigationView= findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
 
         mBundle = new Bundle();
         mBundle.putString("edttext", "Hello this is Nikhil nikhil nikhil 737238789");
@@ -132,7 +134,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
          fragmentMain.setArguments(mBundle);
 
        // Calls begins data transfer on start up
-        onClickStart();
+       // onClickStart();
 
         // Graph stuff
         graph = (GraphView) findViewById(R.id.graph);
@@ -147,7 +149,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
 
-    public boolean BTinit()
+  /*  public boolean BTinit()
     {
         // status.append("entered BTinit");
         boolean found=false;
@@ -339,7 +341,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         });
 
         thread.start();
-    }
+    }*/
 
     // Need to fix bug of elements 0 and 1 displaying twice
     private void displayDataInTextView(TextView textView, ArrayList arrayList){
@@ -513,7 +515,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             startActivity(new Intent(MainActivity.this, SettingsActivity.class));
 
         } else if (id == R.id.nav_notes) {
-            startActivity(new Intent(MainActivity.this, FragmentNotes.class));
+            startActivity(new Intent(MainActivity.this, NotesActivity.class));
 
         } else if (id == R.id.nav_patientInfo) {
             startActivity(new Intent(MainActivity.this, PatientInfoActivity.class));
@@ -522,8 +524,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             startActivity(new Intent(MainActivity.this, AdInfoActivity.class));
 
         }
-        //DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        //drawer.closeDrawer(GravityCompat.START);
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        drawer.closeDrawer(GravityCompat.START);
         return true;
     }
 }

@@ -10,10 +10,13 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -30,8 +33,7 @@ import android.widget.Toast;
 
 
 public class NotesActivity extends AppCompatActivity
-        implements LoaderManager.LoaderCallbacks<Cursor>
-{
+        implements LoaderManager.LoaderCallbacks<Cursor>, NavigationView.OnNavigationItemSelectedListener {
 
     private static final int EDITOR_REQUEST_CODE = 1001;
     private CursorAdapter cursorAdapter;
@@ -46,10 +48,12 @@ public class NotesActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_notes);
+        NavigationView navigationView= findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
 
         cursorAdapter = new NotesCursorAdapter(this, null, 0);
 
-        ListView list = (ListView) findViewById(android.R.id.list);
+     /*   ListView list = (ListView) findViewById(android.R.id.list);
         list.setAdapter(cursorAdapter);
 
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -61,7 +65,7 @@ public class NotesActivity extends AppCompatActivity
                 startActivityForResult(intent, EDITOR_REQUEST_CODE);
             }
         });
-
+*/
         getSupportLoaderManager().initLoader(0, null, this);
 
     }
@@ -170,4 +174,30 @@ public class NotesActivity extends AppCompatActivity
         }
     }
 
+
+    @Override
+    public boolean onNavigationItemSelected(MenuItem item) {
+        // Handle navigation view item clicks here.
+        int id = item.getItemId();
+
+        if (id == R.id.nav_main) {
+            startActivity(new Intent(NotesActivity.this, MainActivity.class));
+
+        } else if (id == R.id.nav_settings) {
+            startActivity(new Intent(NotesActivity.this, SettingsActivity.class));
+
+        } else if (id == R.id.nav_notes) {
+            startActivity(new Intent(NotesActivity.this, NotesActivity.class));
+
+        } else if (id == R.id.nav_patientInfo) {
+            startActivity(new Intent(NotesActivity.this, PatientInfoActivity.class));
+
+        } else if (id == R.id.nav_adinfo) {
+            startActivity(new Intent(NotesActivity.this, AdInfoActivity.class));
+
+        }
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        drawer.closeDrawer(GravityCompat.START);
+        return true;
+    }
 }
